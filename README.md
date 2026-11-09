@@ -63,10 +63,10 @@ files in `raw/`. Every step is also a command, listed in [docs/pipeline.md](docs
    pixels to millimetres. Rulers on the foam then correct heights on the face by 4.9%, because the card
    sat slightly off the face's plane.
 
-   <img src="results/figures/calib_C1.png" width="640" alt="Calibration clip C1: the checkerboard on the dotted face with its detected corners">
+   <img src="media/calibration.jpg" width="760" alt="The printed checkerboard standing flat against the dotted face, and the same view without it">
 
-   *Calibration clip C1: detected corners in green; red arrows are the residuals, magnified 100 times
-   (hold-out error 0.32 mm).*
+   *Left: the printed checkerboard standing flat against the dotted face (calibration clip C1). Right: the
+   same camera view without the card. The board's corners give the pixel-to-millimetre map for the dots.*
 3. **Tracking.** Each dot is a contrast-weighted centroid matched to the grid. Two dots on the bottle give
    the cap's depth and tilt. On synthetic clips with known truth, dot positions are accurate to 0.015 mm.
 4. **Model.** A hexahedral finite-element grid (a voxel grid) of the whole 234 × 140 × 73 mm block. The

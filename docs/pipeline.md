@@ -20,7 +20,8 @@ inner corners). Glue it to stiff card, cut along the dashed line, and film it st
 the dotted face with its bottom edge on the table: that is clip C1. Film it again at the end of the
 session (C2) to check that nothing moved. If the print came out at another size, put the measured size
 in `board.printed_width_mm` and `board.printed_height_mm` (see `config.example.json`) and pass that file
-with `--config`. `results/figures/calib_C1.png` shows this session's detection.
+with `--config`. `media/calibration.jpg` shows the board in this session, and
+`results/figures/calib_C1.png` the corners it found with their residuals.
 
 ## Run, in this order
 
