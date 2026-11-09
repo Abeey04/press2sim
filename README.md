@@ -49,10 +49,12 @@ python -m pytest -q tests          # 12 pass, 1 slow test is skipped
 | Notebook | What it does | Needs | Time |
 |---|---|---|---|
 | [`02_check_results`](notebooks/02_check_results.ipynb) | Recomputes the held-out errors from the saved arrays, predicts H1 again from its cap depth alone, and shows where the error sits, what damping does, how uncertain E is and the MuJoCo comparison | nothing beyond this repo | about 1 minute |
-| [`01_reproduce`](notebooks/01_reproduce.ipynb) | Runs everything from the raw clips (frame timing, calibration, tracking, model, videos) and compares your numbers with `results/` | the 22 clips, 1.9 GB | about 1 hour on 2 cores |
+| [`01_reproduce`](notebooks/01_reproduce.ipynb) | Runs everything from the raw clips (frame timing, calibration, tracking, model, videos) and compares your numbers with `results/` | the 22 clips, 1.8 GB | about 1 hour on 2 cores |
 
-**Raw clips:** *download link to be added*. They are 1080p HEVC at 240 fps nominal; put the original
-files in `raw/`. Every step is also a command, listed in [docs/pipeline.md](docs/pipeline.md).
+**Raw clips:** [Google Drive folder](https://drive.google.com/drive/folders/1NeI0AOQUbnOajynEOH5SJd4AMVeiI9OX?usp=sharing)
+(22 clips, 1.8 GB). They are 1080p HEVC at 240 fps nominal, with the audio removed and the video
+untouched: every frame and timestamp is identical to what the camera recorded. Put them in `raw/`.
+Every step is also a command, listed in [docs/pipeline.md](docs/pipeline.md).
 
 ## How it works
 
