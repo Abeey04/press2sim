@@ -1,0 +1,23 @@
+code,file,kind,depth_mm,speed,hold_s,load_kg,held_out,notes
+C1,C1.MOV,calib,,,,,,checkerboard flat on the face; bottle away
+S1,S1.MOV,static,,,,,,nothing touching
+T01,T01.MOV,press,11,slow,0,,no,
+T02,T02.MOV,press,11,fast,1,,no,
+T03,T03.MOV,press,11,slow,3,,no,
+T04,T04.MOV,press,18,fast,0,,no,
+T05,T05.MOV,press,18,slow,1,,no,
+T06,T06.MOV,press,18,fast,3,,no,
+T07,T07.MOV,press,29,slow,0,,no,
+T08,T08.MOV,press,29,fast,1,,no,
+T09,T09.MOV,press,29,slow,3,,no,
+R1,R1.MOV,press,18,slow,1,,no,repeat of T05
+R2,R2.MOV,press,29,fast,1,,no,repeat of T08
+H1,H1.MOV,press,22,medium,2,,yes,held out: fresh press in range
+O1,O1.MOV,press,18,slow,1,,yes,held out: bottle centred on the 5th dot column from the left
+F1,F1.MOV,fingertip,10,,0,,yes,held out: fingertip at the top centre
+K0,K0.MOV,weight,,,,0.26,no,pad alone (fibreglass pad 0.26 kg)
+K1,K1.MOV,weight,,,,1.0,no,pad stays on; bottle on top (scale reading)
+K2,K2.MOV,weight,,,,1.5,no,pad stays on; bottle on top (scale reading)
+K3,K3.MOV,weight,,,,2.0,no,pad stays on; bottle on top (scale reading)
+K4,K4.MOV,weight,,,,2.423,no,pad stays on; bottle on top (scale reading)
+C2,C2.MOV,calib,,,,,,checkerboard again; pad off

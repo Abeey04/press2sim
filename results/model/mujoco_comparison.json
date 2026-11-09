@@ -1,0 +1,341 @@
+{
+ "mujoco_nu": 0.3,
+ "tried": {
+  "0.0": {
+   "pressing_frames_rms_mm": 3.3891496433434507,
+   "max_depth_reached_mm": 56.0
+  },
+  "0.3": {
+   "pressing_frames_rms_mm": 3.0157151438915832,
+   "max_depth_reached_mm": 56.0
+  }
+ },
+ "setup": {
+  "E": 178358.9922820626,
+  "nu": 0.3,
+  "damping": 0.0012409860799839606,
+  "count": [
+   24,
+   14,
+   8
+  ],
+  "dt": 0.001,
+  "mass_scale": 100.0,
+  "friction": 2.0,
+  "y0": 0.0
+ },
+ "rows": [
+  {
+   "clip": "T01",
+   "set": "training",
+   "max_depth_mm": 23.9326874844962,
+   "ours: RMS error mm": 0.5582557605298131,
+   "ours: error at deepest mm": 1.2012328763808315,
+   "our solver, MuJoCo's physics: RMS error mm": 1.3571087096892873,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.2149982941973585,
+   "MuJoCo: RMS error mm": 0.733662098113779,
+   "MuJoCo: error at deepest mm": 1.4559096330201506,
+   "RMS movement mm": 1.85645149283965
+  },
+  {
+   "clip": "T02",
+   "set": "training",
+   "max_depth_mm": 25.55357732439606,
+   "ours: RMS error mm": 0.8152796805714106,
+   "ours: error at deepest mm": 1.3443567047368754,
+   "our solver, MuJoCo's physics: RMS error mm": 1.938242658763136,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.4357029515848736,
+   "MuJoCo: RMS error mm": 0.903952938556702,
+   "MuJoCo: error at deepest mm": 1.4924698527754174,
+   "RMS movement mm": 2.583863572602328
+  },
+  {
+   "clip": "T03",
+   "set": "training",
+   "max_depth_mm": 20.443747987200325,
+   "ours: RMS error mm": 0.9589103478101952,
+   "ours: error at deepest mm": 1.5526189537800865,
+   "our solver, MuJoCo's physics: RMS error mm": 2.0358857189515924,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.3547588560749704,
+   "MuJoCo: RMS error mm": 1.059161470247346,
+   "MuJoCo: error at deepest mm": 1.687682961170636,
+   "RMS movement mm": 2.0963043948115767
+  },
+  {
+   "clip": "T04",
+   "set": "training",
+   "max_depth_mm": 32.59621491795492,
+   "ours: RMS error mm": 0.804728762258477,
+   "ours: error at deepest mm": 1.2875046309697231,
+   "our solver, MuJoCo's physics: RMS error mm": 2.279331732103237,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.930156067760553,
+   "MuJoCo: RMS error mm": 1.4263098090935837,
+   "MuJoCo: error at deepest mm": 2.630520882772618,
+   "RMS movement mm": 4.09225574215461
+  },
+  {
+   "clip": "T05",
+   "set": "training",
+   "max_depth_mm": 31.915033630715612,
+   "ours: RMS error mm": 0.8734601448071765,
+   "ours: error at deepest mm": 1.2329492045592825,
+   "our solver, MuJoCo's physics: RMS error mm": 2.4761554721281263,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.786380687936896,
+   "MuJoCo: RMS error mm": 1.5155392299970691,
+   "MuJoCo: error at deepest mm": 2.439608111705269,
+   "RMS movement mm": 4.443067189681062
+  },
+  {
+   "clip": "T06",
+   "set": "training",
+   "max_depth_mm": 33.95522139262987,
+   "ours: RMS error mm": 0.8814542857658724,
+   "ours: error at deepest mm": 1.3391382585699503,
+   "our solver, MuJoCo's physics: RMS error mm": 2.5399376744088196,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.9691191943037674,
+   "MuJoCo: RMS error mm": 1.7822409680008504,
+   "MuJoCo: error at deepest mm": 2.959513118785361,
+   "RMS movement mm": 5.057217059171094
+  },
+  {
+   "clip": "T07",
+   "set": "training",
+   "max_depth_mm": 45.11787433522782,
+   "ours: RMS error mm": 1.4727380591058072,
+   "ours: error at deepest mm": 2.307028963537844,
+   "our solver, MuJoCo's physics: RMS error mm": 3.642138585029474,
+   "our solver, MuJoCo's physics: error at deepest mm": 5.83190594031024,
+   "MuJoCo: RMS error mm": 3.044022391209264,
+   "MuJoCo: error at deepest mm": 4.8324398201631285,
+   "RMS movement mm": 8.3372816719281
+  },
+  {
+   "clip": "T08",
+   "set": "training",
+   "max_depth_mm": 45.5525395570151,
+   "ours: RMS error mm": 1.6189110022202746,
+   "ours: error at deepest mm": 2.2807767521860156,
+   "our solver, MuJoCo's physics: RMS error mm": 3.9440339971572227,
+   "our solver, MuJoCo's physics: error at deepest mm": 5.799380596684691,
+   "MuJoCo: RMS error mm": 3.261952778788663,
+   "MuJoCo: error at deepest mm": 4.770153313792971,
+   "RMS movement mm": 9.181154775647029
+  },
+  {
+   "clip": "T09",
+   "set": "training",
+   "max_depth_mm": 47.61630503659997,
+   "ours: RMS error mm": 1.648639006479332,
+   "ours: error at deepest mm": 2.653829194924892,
+   "our solver, MuJoCo's physics: RMS error mm": 3.8950297204756668,
+   "our solver, MuJoCo's physics: error at deepest mm": 6.536215523925637,
+   "MuJoCo: RMS error mm": 3.2468617735028436,
+   "MuJoCo: error at deepest mm": 5.2594179584998875,
+   "RMS movement mm": 8.979799275435093
+  },
+  {
+   "clip": "R1",
+   "set": "training",
+   "max_depth_mm": 35.02784028139817,
+   "ours: RMS error mm": 0.8402158499848147,
+   "ours: error at deepest mm": 1.2203052106825398,
+   "our solver, MuJoCo's physics: RMS error mm": 2.5471281639013763,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.934373044181855,
+   "MuJoCo: RMS error mm": 2.0025761353040967,
+   "MuJoCo: error at deepest mm": 3.27674167248094,
+   "RMS movement mm": 5.404996741841147
+  },
+  {
+   "clip": "R2",
+   "set": "training",
+   "max_depth_mm": 49.976115093705076,
+   "ours: RMS error mm": 1.9679555912866533,
+   "ours: error at deepest mm": 2.8929501495972243,
+   "our solver, MuJoCo's physics: RMS error mm": 4.732258481656507,
+   "our solver, MuJoCo's physics: error at deepest mm": 7.174412649543457,
+   "MuJoCo: RMS error mm": 3.7717702878774664,
+   "MuJoCo: error at deepest mm": 5.5470285133906385,
+   "RMS movement mm": 10.544167867839517
+  },
+  {
+   "clip": "H1",
+   "set": "held out",
+   "max_depth_mm": 38.357129488294326,
+   "ours: RMS error mm": 1.1684934685178543,
+   "ours: error at deepest mm": 1.5688183036616892,
+   "our solver, MuJoCo's physics: RMS error mm": 3.1487665057589864,
+   "our solver, MuJoCo's physics: error at deepest mm": 4.430197880617142,
+   "MuJoCo: RMS error mm": 2.7243072174628087,
+   "MuJoCo: error at deepest mm": 3.9074487350696216,
+   "RMS movement mm": 6.925617275604689
+  },
+  {
+   "clip": "O1",
+   "set": "held out",
+   "max_depth_mm": 32.43507284633034,
+   "ours: RMS error mm": 1.0084588847377707,
+   "ours: error at deepest mm": 1.561703885921329,
+   "our solver, MuJoCo's physics: RMS error mm": 2.3356577798187437,
+   "our solver, MuJoCo's physics: error at deepest mm": 3.4706146664583972,
+   "MuJoCo: RMS error mm": 1.825256849202916,
+   "MuJoCo: error at deepest mm": 3.0044713350206886,
+   "RMS movement mm": 5.21348148429428
+  }
+ ],
+ "inversion": [
+  {
+   "depth_mm": 0.0,
+   "inverted_layer_pairs_under_cap": 0,
+   "front_column_heights_mm": [
+    0.0,
+    10.4,
+    20.9,
+    31.3,
+    41.7,
+    52.1,
+    62.6,
+    73.0
+   ]
+  },
+  {
+   "depth_mm": 1.5,
+   "inverted_layer_pairs_under_cap": 0,
+   "front_column_heights_mm": [
+    0.0,
+    10.2,
+    20.4,
+    30.6,
+    40.8,
+    51.0,
+    61.2,
+    71.4
+   ]
+  },
+  {
+   "depth_mm": 4.0,
+   "inverted_layer_pairs_under_cap": 0,
+   "front_column_heights_mm": [
+    0.0,
+    9.8,
+    19.6,
+    29.5,
+    39.3,
+    49.1,
+    59.0,
+    68.9
+   ]
+  },
+  {
+   "depth_mm": 7.0,
+   "inverted_layer_pairs_under_cap": 0,
+   "front_column_heights_mm": [
+    0.0,
+    9.3,
+    18.8,
+    28.2,
+    37.5,
+    46.9,
+    56.3,
+    65.9
+   ]
+  },
+  {
+   "depth_mm": 11.0,
+   "inverted_layer_pairs_under_cap": 0,
+   "front_column_heights_mm": [
+    0.0,
+    8.8,
+    17.8,
+    26.7,
+    35.5,
+    44.2,
+    53.0,
+    62.0
+   ]
+  },
+  {
+   "depth_mm": 16.0,
+   "inverted_layer_pairs_under_cap": 6,
+   "front_column_heights_mm": [
+    0.0,
+    9.4,
+    19.0,
+    28.5,
+    38.0,
+    47.3,
+    56.4,
+    56.2
+   ]
+  },
+  {
+   "depth_mm": 22.0,
+   "inverted_layer_pairs_under_cap": 7,
+   "front_column_heights_mm": [
+    0.0,
+    8.6,
+    17.3,
+    26.0,
+    34.5,
+    42.8,
+    51.4,
+    41.8
+   ]
+  },
+  {
+   "depth_mm": 29.0,
+   "inverted_layer_pairs_under_cap": 14,
+   "front_column_heights_mm": [
+    0.0,
+    9.9,
+    20.0,
+    30.1,
+    40.1,
+    33.4,
+    43.0,
+    33.4
+   ]
+  },
+  {
+   "depth_mm": 37.0,
+   "inverted_layer_pairs_under_cap": 15,
+   "front_column_heights_mm": [
+    0.0,
+    9.1,
+    18.1,
+    26.8,
+    35.7,
+    26.2,
+    35.6,
+    25.9
+   ]
+  },
+  {
+   "depth_mm": 46.0,
+   "inverted_layer_pairs_under_cap": 20,
+   "front_column_heights_mm": [
+    0.0,
+    9.0,
+    18.3,
+    15.9,
+    25.1,
+    16.4,
+    26.1,
+    16.5
+   ]
+  },
+  {
+   "depth_mm": 56.0,
+   "inverted_layer_pairs_under_cap": 22,
+   "front_column_heights_mm": [
+    0.0,
+    7.6,
+    15.8,
+    9.0,
+    16.5,
+    7.1,
+    16.2,
+    6.6
+   ]
+  }
+ ]
+}

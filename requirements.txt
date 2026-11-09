@@ -1,0 +1,12 @@
+numpy>=1.26
+scipy>=1.11
+opencv-python>=4.8
+av>=12.0
+matplotlib>=3.8
+pyamg>=5.0        # fast solver for the 3D block model; without it a slower direct solve is used
+mujoco>=4.0       # only for the MuJoCo baseline (python -m press2sim mujoco) and scripts/mujoco_checks.py
+pandas>=2.0       # the notebooks' tables
+notebook>=7.0     # to open the notebooks (VS Code works too)
+pytest>=8.0
+# optional cross-check with CoTracker3: install PyTorch with CUDA from https://pytorch.org first,
+# then run python -m press2sim.cotracker_check (torch.hub downloads the model on first use)

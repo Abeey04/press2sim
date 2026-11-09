@@ -1,0 +1,39 @@
+{
+ "noise_floor": {
+  "S1": {
+   "x_std_mm_median": 0.014941474422812462,
+   "z_std_mm_median": 0.01038252841681242,
+   "std_mm_p95": 0.03142254054546356,
+   "frames": 1254
+  }
+ },
+ "repeatability": {
+  "R1~T05": {
+   "rms_mm": 3.6454033859515595,
+   "max_depth_mm": [
+    35.02784028139817,
+    31.915033630715612
+   ],
+   "seconds_compared": 4.632000000000004
+  },
+  "R2~T08": {
+   "rms_mm": 1.5306398028470103,
+   "max_depth_mm": [
+    49.976115093705076,
+    45.5525395570151
+   ],
+   "seconds_compared": 6.832000000000006
+  }
+ },
+ "calibration_compare": {
+  "a": "C1",
+  "b": "C2",
+  "card_shift_x_mm": -0.662437367353192,
+  "card_shift_z_mm": 0.20022510158129592,
+  "tilt_change_deg": 0.44515395050547163,
+  "scale_change_pct": 0.2117995307274967,
+  "residual_rms_mm": 0.42573169328093236,
+  "corner_shift_px_median": 6.922641959347526,
+  "verdict": "check: camera or foam may have moved"
+ }
+}

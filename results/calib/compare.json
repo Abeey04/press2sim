@@ -1,0 +1,11 @@
+{
+ "a": "C1",
+ "b": "C2",
+ "card_shift_x_mm": -0.662437367353192,
+ "card_shift_z_mm": 0.20022510158129592,
+ "tilt_change_deg": 0.44515395050547163,
+ "scale_change_pct": 0.2117995307274967,
+ "residual_rms_mm": 0.42573169328093236,
+ "corner_shift_px_median": 6.922641959347526,
+ "verdict": "check: camera or foam may have moved"
+}

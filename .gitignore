@@ -1,0 +1,17 @@
+# raw clips: shared by link (see the README)
+raw/
+*.MOV
+*.mov
+
+# written by the pipeline; the reference run is in results/
+out/
+syn/
+
+# Python and editors
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+*.egg-info/
+.DS_Store

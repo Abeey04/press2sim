@@ -1,0 +1,425 @@
+{
+ "train": [
+  "T01",
+  "T02",
+  "T03",
+  "T04",
+  "T05",
+  "T06",
+  "T07",
+  "T08",
+  "T09",
+  "R1",
+  "R2"
+ ],
+ "weights": [
+  "K1",
+  "K2",
+  "K3",
+  "K4"
+ ],
+ "held_out": [
+  "H1",
+  "O1",
+  "F1"
+ ],
+ "start": {
+  "nu": 0.0,
+  "eps_y": 0.07,
+  "h": 0.07,
+  "eps_d": 0.5499999999999998,
+  "y0": 0.0,
+  "g": [
+   0.12
+  ],
+  "tau": [
+   0.34
+  ],
+  "tau_v": 0.002,
+  "E": 178601.8386968927,
+  "support": 0.02961042495177301,
+  "skin_t": 3.0,
+  "skin_k": 0.05500000000000001
+ },
+ "support": {
+  "value_per_mm": 0.02961042495177301,
+  "pattern_misfit": 0.06532205514952438,
+  "pattern_misfit_if_rigid": 0.08402026006302893
+ },
+ "shape": {
+  "rms_mm": 1.5598757650795105
+ },
+ "damping": {
+  "recovery_rms_mm": 0.7853884063239314,
+  "recovery_rms_no_damping_mm": 0.7901516858445247
+ },
+ "stiffness": {
+  "E_Pa": 178358.9922820626,
+  "rms_mm": 0.23310466624520823,
+  "per_clip": {
+   "K1": {
+    "load_kg": 1.0,
+    "t_on_s": 7.257083333333334,
+    "t_off_s": 17.650833333333335,
+    "sink_measured_mm": 0.626804589266116,
+    "sink_model_mm": 0.30331207831632345,
+    "rms_mm": 0.29226472940686676
+   },
+   "K2": {
+    "load_kg": 1.5,
+    "t_on_s": 9.019166666666667,
+    "t_off_s": 17.738333333333333,
+    "sink_measured_mm": 0.7048663830510767,
+    "sink_model_mm": 0.4549681174335227,
+    "rms_mm": 0.24191136070600452
+   },
+   "K3": {
+    "load_kg": 2.0,
+    "t_on_s": 8.317916666666667,
+    "t_off_s": 17.53375,
+    "sink_measured_mm": 0.9733211172032137,
+    "sink_model_mm": 0.7774439839115548,
+    "rms_mm": 0.2377616541435749
+   },
+   "K4": {
+    "load_kg": 2.423,
+    "t_on_s": 9.194583333333334,
+    "t_off_s": 18.218333333333334,
+    "sink_measured_mm": 1.0969703637233168,
+    "sink_model_mm": 1.2373941424833577,
+    "rms_mm": 0.12147225351828433
+   }
+  }
+ },
+ "params": {
+  "nu": 0.0,
+  "eps_y": 0.07,
+  "h": 0.07,
+  "eps_d": 0.5499999999999998,
+  "y0": 0.0,
+  "g": [
+   0.12052658777742022
+  ],
+  "tau": [
+   0.34080528066104887
+  ],
+  "tau_v": 0.0012409860799839606,
+  "E": 178358.9922820626,
+  "support": 0.02961042495177301,
+  "skin_t": 3.0,
+  "skin_k": 0.05500000000000001
+ },
+ "effective": {
+  "under_cap": {
+   "5mm": {
+    "force_N_long_term": 27.25077634854373,
+    "force_N_fast": 30.985332779619064,
+    "stiffness_N_per_mm_fast": 10.846427372054844,
+    "stiffness_N_per_mm_long_term": 9.539144491325462
+   },
+   "10mm": {
+    "force_N_long_term": 60.87298669432512,
+    "force_N_fast": 69.21526659969022,
+    "stiffness_N_per_mm_fast": 5.512359691987164,
+    "stiffness_N_per_mm_long_term": 4.84797378771016
+   },
+   "20mm": {
+    "force_N_long_term": 94.43623118823908,
+    "force_N_fast": 107.37815364944639,
+    "stiffness_N_per_mm_fast": 3.934842487768933,
+    "stiffness_N_per_mm_long_term": 3.4605893492765283
+   },
+   "30mm": {
+    "force_N_long_term": 135.5583910072767,
+    "force_N_fast": 154.13586030383505,
+    "stiffness_N_per_mm_fast": 4.763258469614206,
+    "stiffness_N_per_mm_long_term": 4.1891591795697085
+   }
+  },
+  "damping": {
+   "relaxation": [
+    {
+     "fraction": 0.12052658777742022,
+     "tau_s": 0.34080528066104887,
+     "viscosity_Pa_s": 7326.291370285731,
+     "c_N_s_per_mm_at_10mm": 0.2264262245743691
+    }
+   ],
+   "dashpot": {
+    "tau_v_s": 0.0012409860799839606,
+    "viscosity_Pa_s": 221.34102666200633,
+    "c_N_s_per_mm_at_10mm": 0.0068407616456207425
+   }
+  },
+  "plateau_stress_Pa": 12485.129459744383,
+  "plate_stiffness_N_per_mm": 36.77533079221012
+ },
+ "predictions": [
+  {
+   "clip": "T01",
+   "set": "training",
+   "rms_error_mm": 0.5582557605298131,
+   "rms_movement_mm": 1.85645149283965,
+   "max_movement_mm": 18.379913159336677,
+   "relative_error": 0.3007112023572986,
+   "error_at_deepest_mm": 1.2012328763808315,
+   "movement_at_deepest_mm": 4.4310437088182235,
+   "error_recovery_mm": 0.33331531608691056,
+   "movement_recovery_mm": 1.1400460051617025,
+   "top row (row)": 0.7255062468270359,
+   "middle row (row)": 0.611656809061499,
+   "bottom row (row)": 0.2929131839339655,
+   "rms_error_no_damping_mm": 0.5570172666161602,
+   "recovery_error_no_damping_mm": 0.3296894754924199,
+   "max_depth_mm": 23.9326874844962,
+   "peak_force_model_N": 112.7895761599704
+  },
+  {
+   "clip": "T02",
+   "set": "training",
+   "rms_error_mm": 0.8152796805714106,
+   "rms_movement_mm": 2.583863572602328,
+   "max_movement_mm": 20.30424372439344,
+   "relative_error": 0.31552737118790875,
+   "error_at_deepest_mm": 1.3443567047368754,
+   "movement_at_deepest_mm": 4.903743037577416,
+   "error_recovery_mm": 0.37490841166879774,
+   "movement_recovery_mm": 1.0643897246478307,
+   "top row (row)": 0.9397243650287022,
+   "middle row (row)": 0.9915979662259247,
+   "bottom row (row)": 0.42288360518944024,
+   "rms_error_no_damping_mm": 0.8123690419764837,
+   "recovery_error_no_damping_mm": 0.3635166505789974,
+   "max_depth_mm": 25.55357732439606,
+   "peak_force_model_N": 119.38304407735988
+  },
+  {
+   "clip": "T03",
+   "set": "training",
+   "rms_error_mm": 0.9589103478101952,
+   "rms_movement_mm": 2.0963043948115767,
+   "max_movement_mm": 14.987286257200477,
+   "relative_error": 0.4574289641254058,
+   "error_at_deepest_mm": 1.5526189537800865,
+   "movement_at_deepest_mm": 3.2500901586576347,
+   "error_recovery_mm": 1.2413350186857801,
+   "movement_recovery_mm": 2.849558493957905,
+   "top row (row)": 1.060456157096393,
+   "middle row (row)": 1.1012289054819229,
+   "bottom row (row)": 0.5522965710721012,
+   "rms_error_no_damping_mm": 0.9592887622559,
+   "recovery_error_no_damping_mm": 1.241975018777453,
+   "max_depth_mm": 20.443747987200325,
+   "peak_force_model_N": 97.83985129492685
+  },
+  {
+   "clip": "T04",
+   "set": "training",
+   "rms_error_mm": 0.804728762258477,
+   "rms_movement_mm": 4.09225574215461,
+   "max_movement_mm": 27.616443404683395,
+   "relative_error": 0.19664674276558775,
+   "error_at_deepest_mm": 1.2875046309697231,
+   "movement_at_deepest_mm": 7.720463261458722,
+   "error_recovery_mm": 0.39220941170107465,
+   "movement_recovery_mm": 1.9805727421507313,
+   "top row (row)": 1.1798584370617966,
+   "middle row (row)": 0.730156516231309,
+   "bottom row (row)": 0.3343889945950542,
+   "rms_error_no_damping_mm": 0.8045071350127593,
+   "recovery_error_no_damping_mm": 0.3912847042733571,
+   "max_depth_mm": 32.59621491795492,
+   "peak_force_model_N": 149.07034186994426
+  },
+  {
+   "clip": "T05",
+   "set": "training",
+   "rms_error_mm": 0.8734601448071765,
+   "rms_movement_mm": 4.443067189681062,
+   "max_movement_mm": 26.968582715612733,
+   "relative_error": 0.1965894521774892,
+   "error_at_deepest_mm": 1.2329492045592825,
+   "movement_at_deepest_mm": 7.397739764022821,
+   "error_recovery_mm": 0.4260125016431448,
+   "movement_recovery_mm": 2.0156379297266462,
+   "top row (row)": 1.235179777670416,
+   "middle row (row)": 0.8246105627031622,
+   "bottom row (row)": 0.3726731082321781,
+   "rms_error_no_damping_mm": 0.8752117463550718,
+   "recovery_error_no_damping_mm": 0.4360825066663593,
+   "max_depth_mm": 31.915033630715612,
+   "peak_force_model_N": 145.470453897861
+  },
+  {
+   "clip": "T06",
+   "set": "training",
+   "rms_error_mm": 0.8814542857658724,
+   "rms_movement_mm": 5.057217059171094,
+   "max_movement_mm": 28.979076260981373,
+   "relative_error": 0.17429631266614995,
+   "error_at_deepest_mm": 1.3391382585699503,
+   "movement_at_deepest_mm": 8.267321897405967,
+   "error_recovery_mm": 0.3635893121992879,
+   "movement_recovery_mm": 1.8860553619360532,
+   "top row (row)": 1.321544990086385,
+   "middle row (row)": 0.7331397034892344,
+   "bottom row (row)": 0.32758586418982194,
+   "rms_error_no_damping_mm": 0.88566449069989,
+   "recovery_error_no_damping_mm": 0.38789313055532637,
+   "max_depth_mm": 33.95522139262987,
+   "peak_force_model_N": 155.5725963864366
+  },
+  {
+   "clip": "T07",
+   "set": "training",
+   "rms_error_mm": 1.4727380591058072,
+   "rms_movement_mm": 8.3372816719281,
+   "max_movement_mm": 40.28253089904832,
+   "relative_error": 0.17664487264051118,
+   "error_at_deepest_mm": 2.307028963537844,
+   "movement_at_deepest_mm": 13.60642258389502,
+   "error_recovery_mm": 0.89385763089721,
+   "movement_recovery_mm": 3.792395523160001,
+   "top row (row)": 2.063996192771417,
+   "middle row (row)": 1.1224058492772513,
+   "bottom row (row)": 0.7842152827016701,
+   "rms_error_no_damping_mm": 1.4735636469964242,
+   "recovery_error_no_damping_mm": 0.8973477168699796,
+   "max_depth_mm": 45.11787433522782,
+   "peak_force_model_N": 202.85802412671168
+  },
+  {
+   "clip": "T08",
+   "set": "training",
+   "rms_error_mm": 1.6189110022202746,
+   "rms_movement_mm": 9.181154775647029,
+   "max_movement_mm": 41.33255183431354,
+   "relative_error": 0.17632978005276947,
+   "error_at_deepest_mm": 2.2807767521860156,
+   "movement_at_deepest_mm": 13.834500161544941,
+   "error_recovery_mm": 0.9678160647658317,
+   "movement_recovery_mm": 4.435190353701786,
+   "top row (row)": 2.2648797483621688,
+   "middle row (row)": 1.2813545826925992,
+   "bottom row (row)": 0.8119174023935498,
+   "rms_error_no_damping_mm": 1.6205424598997327,
+   "recovery_error_no_damping_mm": 0.9744212247219002,
+   "max_depth_mm": 45.5525395570151,
+   "peak_force_model_N": 206.96226163045603
+  },
+  {
+   "clip": "T09",
+   "set": "training",
+   "rms_error_mm": 1.648639006479332,
+   "rms_movement_mm": 8.979799275435093,
+   "max_movement_mm": 43.276185388889665,
+   "relative_error": 0.1835941935795053,
+   "error_at_deepest_mm": 2.653829194924892,
+   "movement_at_deepest_mm": 15.008162501659204,
+   "error_recovery_mm": 1.0738222648735118,
+   "movement_recovery_mm": 5.021908241247635,
+   "top row (row)": 2.2698837717656097,
+   "middle row (row)": 1.3310494506865447,
+   "bottom row (row)": 0.8096699100499135,
+   "rms_error_no_damping_mm": 1.6500149403293631,
+   "recovery_error_no_damping_mm": 1.0814527161639664,
+   "max_depth_mm": 47.61630503659997,
+   "peak_force_model_N": 219.38739497714155
+  },
+  {
+   "clip": "R1",
+   "set": "training",
+   "rms_error_mm": 0.8402158499848147,
+   "rms_movement_mm": 5.404996741841147,
+   "max_movement_mm": 30.178235286602312,
+   "relative_error": 0.15545168482351485,
+   "error_at_deepest_mm": 1.2203052106825398,
+   "movement_at_deepest_mm": 8.830558698102163,
+   "error_recovery_mm": 0.44167877870411354,
+   "movement_recovery_mm": 2.479675479548067,
+   "top row (row)": 1.2945628089234307,
+   "middle row (row)": 0.6516105655542677,
+   "bottom row (row)": 0.4416827738022081,
+   "rms_error_no_damping_mm": 0.8443960471104693,
+   "recovery_error_no_damping_mm": 0.45930056697075455,
+   "max_depth_mm": 35.02784028139817,
+   "peak_force_model_N": 161.11196248024018
+  },
+  {
+   "clip": "R2",
+   "set": "training",
+   "rms_error_mm": 1.9679555912866533,
+   "rms_movement_mm": 10.544167867839517,
+   "max_movement_mm": 45.07318059897211,
+   "relative_error": 0.18663925081172708,
+   "error_at_deepest_mm": 2.8929501495972243,
+   "movement_at_deepest_mm": 15.919658296776296,
+   "error_recovery_mm": 1.151468178840835,
+   "movement_recovery_mm": 5.214523325263075,
+   "top row (row)": 2.78462020475469,
+   "middle row (row)": 1.599647913031983,
+   "bottom row (row)": 0.945160865716243,
+   "rms_error_no_damping_mm": 1.969810873263688,
+   "recovery_error_no_damping_mm": 1.1594737155219266,
+   "max_depth_mm": 49.976115093705076,
+   "peak_force_model_N": 235.62880992868688
+  },
+  {
+   "clip": "H1",
+   "set": "held out",
+   "rms_error_mm": 1.1684934685178543,
+   "rms_movement_mm": 6.925617275604689,
+   "max_movement_mm": 33.44268674351175,
+   "relative_error": 0.16872047963635572,
+   "error_at_deepest_mm": 1.5688183036616892,
+   "movement_at_deepest_mm": 10.244458491052795,
+   "error_recovery_mm": 0.7743631704885435,
+   "movement_recovery_mm": 2.917804640532533,
+   "top row (row)": 1.719404950221561,
+   "middle row (row)": 0.8269698144716617,
+   "bottom row (row)": 0.6128865927652982,
+   "rms_error_no_damping_mm": 1.1691409253736926,
+   "recovery_error_no_damping_mm": 0.7776509598628606,
+   "max_depth_mm": 38.357129488294326,
+   "peak_force_model_N": 171.07142870261262
+  },
+  {
+   "clip": "O1",
+   "set": "held out",
+   "rms_error_mm": 1.0084588847377707,
+   "rms_movement_mm": 5.21348148429428,
+   "max_movement_mm": 28.670651565645198,
+   "relative_error": 0.1934329080818209,
+   "error_at_deepest_mm": 1.561703885921329,
+   "movement_at_deepest_mm": 8.450475145369547,
+   "error_recovery_mm": 0.5512472448850284,
+   "movement_recovery_mm": 2.633098422499998,
+   "top row (row)": 1.6437195818043897,
+   "middle row (row)": 0.7867034740129188,
+   "bottom row (row)": 0.5876292789877385,
+   "rms_error_no_damping_mm": 1.010468228733405,
+   "recovery_error_no_damping_mm": 0.5640844181117016,
+   "max_depth_mm": 32.43507284633034,
+   "peak_force_model_N": 145.1111243909837
+  },
+  {
+   "clip": "F1",
+   "set": "held out (fingertip; driven by the one dot under it)",
+   "rms_error_mm": 0.31460274988997355,
+   "rms_movement_mm": 0.9175640705789213,
+   "max_movement_mm": 17.25809316246334,
+   "relative_error": 0.3428673375271553,
+   "error_at_deepest_mm": 0.580840450717776,
+   "movement_at_deepest_mm": 2.2548503590462388,
+   "error_recovery_mm": 0.2252190084517692,
+   "movement_recovery_mm": 0.7293773937660951,
+   "top row (row)": 0.3893180790160572,
+   "middle row (row)": 0.2638986203536221,
+   "bottom row (row)": 0.12409109287558008,
+   "rms_error_no_damping_mm": 0.31460274988997355,
+   "recovery_error_no_damping_mm": null,
+   "max_depth_mm": 28.90266060851212,
+   "peak_force_model_N": 22.385549872506623
+  }
+ ]
+}

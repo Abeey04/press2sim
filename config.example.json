@@ -1,0 +1,6 @@
+{
+  "board": {"printed_width_mm": 260.0, "printed_height_mm": 110.0},
+  "indenter": {"cap_dot_mm": 8.5, "tape_dot_mm": 55.0},
+  "block": {"length_mm": 234.0, "depth_mm": 139.5, "height_mm": 73.0, "mass_kg": 0.078},
+  "tuning": {"contrast_fraction": 0.45}
+}
