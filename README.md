@@ -14,6 +14,10 @@ dots in magenta. Right: the simulated block, driven only by the cap's measured d
 Full-quality videos: [H1](media/H1_simulation.mp4) · [O1, off-centre](media/O1_simulation.mp4) ·
 [predicted dots on the original video](media/H1_model_vs_video.mp4) · [ours against MuJoCo](media/H1_ours_vs_mujoco.mp4)
 
+**Try it in your browser:** [put a weight on the fitted block](https://abeey04.github.io/press2sim/explore.html),
+slide it along the top and make it heavier or lighter. The page carries the model's 3D solutions and runs
+its time behaviour live, so there is nothing to install.
+
 ## Results
 
 | Held-out clip | What it is | Deepest | RMS error | RMS movement | Error / movement |
@@ -122,7 +126,7 @@ press2sim/     the package: video timing, calibration, dots and tracking, the 3D
 notebooks/     01_reproduce (raw clips to every result) and 02_check_results (checks the results in a minute)
 results/       the reference run behind every number in this README
 media/         the demo GIF and videos
-docs/          details on the pipeline, the model and the MuJoCo comparison
+docs/          details on the pipeline, the model and the MuJoCo comparison, and explore.html (the interactive page)
 scripts/       synthetic test clips with known truth, and the MuJoCo follow-up checks
 tests/         unit tests and checks on real frames
 trials.csv     which clip is which, with the dead-weight readings
