@@ -15,7 +15,7 @@ Full-quality videos: [H1](media/H1_simulation.mp4) · [O1, off-centre](media/O1_
 [predicted dots on the original video](media/H1_model_vs_video.mp4) · [ours against MuJoCo](media/H1_ours_vs_mujoco.mp4)
 
 **Try it in your browser:** [put a weight on the fitted block](https://abeey04.github.io/press2sim/explore.html),
-slide it along the top and make it heavier or lighter. The page carries the model's 3D solutions and runs
+drag it anywhere on the top and make it heavier or lighter. The page carries the model's 3D solutions and runs
 its time behaviour live, so there is nothing to install.
 
 ## Results
