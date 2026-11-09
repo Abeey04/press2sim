@@ -4,6 +4,8 @@ The same block was built in MuJoCo 4.0 (`press2sim/mujoco_foam.py`) and scored e
 same presses, same dots, same input. Run it after `model` with
 `python -m press2sim mujoco --trials trials.csv --raw raw` (needs `pip install mujoco`).
 
+![The real H1 press, our simulated block and MuJoCo's, all driven by the same measured cap depth](../media/H1_vs_mujoco.gif)
+
 **Setup.** A soft-body ("flex") grid of 24 × 14 × 8 vertices over the whole block, with the fitted
 Young's modulus and damping, its base pinned to the table, and the cap as a kinematic box that follows
 the measured cap depth. Poisson's ratio was picked the way ours was, on the training presses (0.3 beat 0).

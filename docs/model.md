@@ -65,6 +65,10 @@ For a held-out press the model gets the cap's measured depth over time (from the
 and nothing else. It predicts all 105 dots at every frame, which are then compared with the tracked
 dots.
 
+![The model's predicted dots drawn on the original H1 video, next to the tracked dots](../media/H1_overlay.gif)
+
+*H1, played at about 0.6 times real speed: tracked dots in green, the model's prediction in magenta.*
+
 ## Fitted parameters
 
 | What | Value | From |

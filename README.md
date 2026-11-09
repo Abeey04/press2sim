@@ -11,7 +11,7 @@ the fitted model then predicts every dot of a press it was never fitted on.
 
 *H1, a press the model never saw. Left: the real clip, with the tracked dots in green and the predicted
 dots in magenta. Right: the simulated block, driven only by the cap's measured depth.*
-Videos: [H1](media/H1_simulation.mp4) · [O1, off-centre](media/O1_simulation.mp4) ·
+Full-quality videos: [H1](media/H1_simulation.mp4) · [O1, off-centre](media/O1_simulation.mp4) ·
 [predicted dots on the original video](media/H1_model_vs_video.mp4) · [ours against MuJoCo](media/H1_ours_vs_mujoco.mp4)
 
 ## Results
@@ -25,6 +25,11 @@ Videos: [H1](media/H1_simulation.mp4) · [O1, off-centre](media/O1_simulation.mp
 The error is the RMS over all 105 dots and every frame from contact to the end of the clip. On the 11
 training presses it is 16–46% of the movement, and 16–20% on the deep ones.
 
+![O1, an off-centre press the model never saw, next to its simulation](media/O1_demo.gif)
+
+*O1, pressed 30 mm left of the centre and also never used for fitting: the same model, with the cap where
+it was.*
+
 - **Stiffness.** E = 178 kPa at small strain. The cells start to buckle at 7% strain (a 12.5 kPa plateau)
   and the crushed cells touch from 55%. E is the least certain number: each dead weight alone gives
   98–183 kPa.
@@ -33,6 +38,11 @@ training presses it is 16–46% of the movement, and 16–20% on the deep ones.
 - **MuJoCo baseline.** The same block in MuJoCo 4.0, scored the same way, has 1.1–2.4 times our error.
   A finer grid, MuJoCo's plasticity and its inversion-proof material do not close the gap
   ([details](docs/mujoco.md)).
+
+![The real H1 press, our simulated block and MuJoCo's, all driven by the same measured cap depth](media/H1_vs_mujoco.gif)
+
+*The same held-out press in our model (middle) and in MuJoCo (right), both given only the cap's measured
+depth. MuJoCo's elements collapse under the cap and stay dented after the lift.*
 
 ## Check it yourself
 
