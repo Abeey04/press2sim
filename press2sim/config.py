@@ -2,7 +2,7 @@
 
 Every number here describes the real objects. To change one without editing code,
 put the same keys in a JSON file and pass it with --config, for example
-{"board": {"width_mm": 259.4}, "indenter": {"cap_dot_mm": 8.7}}.
+{"board": {"printed_width_mm": 259.4}, "indenter": {"cap_dot_mm": 8.7}}.
 """
 from __future__ import annotations
 

@@ -12,6 +12,16 @@ The model is in [model.md](model.md) and the MuJoCo baseline in [mujoco.md](mujo
    one in the repo is filled in for this session. For your own session, the sticky-note slate at the
    start of each clip tells you which is which.
 
+## The calibration board
+
+Print `docs/checkerboard_260x110mm.pdf` at 100% (actual size, no fit-to-page) and check its 100 mm scale
+bar with a ruler: the checker area must measure 260 × 110 mm (26 × 11 squares of 10 mm, so 25 × 10
+inner corners). Glue it to stiff card, cut along the dashed line, and film it standing flat against
+the dotted face with its bottom edge on the table: that is clip C1. Film it again at the end of the
+session (C2) to check that nothing moved. If the print came out at another size, put the measured size
+in `board.printed_width_mm` and `board.printed_height_mm` (see `config.example.json`) and pass that file
+with `--config`. `results/figures/calib_C1.png` shows this session's detection.
+
 ## Run, in this order
 
 | Step | Command | What to look for |

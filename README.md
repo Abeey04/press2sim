@@ -58,8 +58,15 @@ files in `raw/`. Every step is also a command, listed in [docs/pipeline.md](docs
 
 1. **Capture.** One iPhone on a tripod films the block's dotted front face (15 × 7 dots) in slow motion.
    Slow motion drops frames, so every frame keeps its own timestamp.
-2. **Calibration.** A checkerboard on the face maps pixels to millimetres. Rulers on the foam then
-   correct heights on the face by 4.9%, because the card sat slightly off the face's plane.
+2. **Calibration.** A printed checkerboard ([printable PDF](docs/checkerboard_260x110mm.pdf), 26 × 11
+   squares of 10 mm) stands flat against the dotted face in the first clip, and its 250 inner corners map
+   pixels to millimetres. Rulers on the foam then correct heights on the face by 4.9%, because the card
+   sat slightly off the face's plane.
+
+   <img src="results/figures/calib_C1.png" width="640" alt="Calibration clip C1: the checkerboard on the dotted face with its detected corners">
+
+   *Calibration clip C1: detected corners in green; red arrows are the residuals, magnified 100 times
+   (hold-out error 0.32 mm).*
 3. **Tracking.** Each dot is a contrast-weighted centroid matched to the grid. Two dots on the bottle give
    the cap's depth and tilt. On synthetic clips with known truth, dot positions are accurate to 0.015 mm.
 4. **Model.** A hexahedral finite-element grid (a voxel grid) of the whole 234 × 140 × 73 mm block. The
