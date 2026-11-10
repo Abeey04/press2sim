@@ -40,14 +40,14 @@ with `--config`. `media/calibration.jpg` shows the board in this session, and
 
 Each line from step 4 reports the following. Check them:
 
-- **Rest frame:** found shortly after the slate, with **105/105 dots**.
+- **Rest frame:** found shortly after the slate, with 105/105 dots.
 - **Tracked percentage:** close to 100%. A few lost frames right under the cap in the 29 mm presses are fine; look at the clip's `_frames.png`.
 - **Rest noise:** 0.01–0.09 mm in this session. S1, where nothing touches the foam, gives the floor: a median
   standard deviation of 0.010–0.015 mm per dot.
 - **Camera shift:** the apparent shift of static features on the table and at the frame's edges. It was
   0.5–2.2 px in this session (0.1–0.6 mm), and 7.5 px in K0, where the pad went on; ideally it stays
   under about 0.3 px. The tracks are not corrected for it.
-- **Bottle dots:** about **46.5 mm apart** (55 − 8.5). Anything else means the wrong dots were picked.
+- **Bottle dots:** about 46.5 mm apart (55 − 8.5). Anything else means the wrong dots were picked.
 - **Tilt:** a few degrees at most.
 
 ## What comes out
@@ -90,7 +90,7 @@ Each line from step 4 reports the following. Check them:
 
 ## Validation
 
-- **Synthetic clips with known truth** (`scripts/make_synthetic.py`). These include a slightly turned camera, about 18% dropped frames, HEVC compression, storage rotated 180° with a display tag, a slate in front of the dots, 100 Hz flicker and sensor noise. Results:
+- **Synthetic clips with known truth** (`scripts/make_synthetic.py`) include a slightly turned camera, about 18% dropped frames, HEVC compression, storage rotated 180° with a display tag, a slate in front of the dots, 100 Hz flicker and sensor noise. Results:
 
   | Check | Result |
   |---|---|

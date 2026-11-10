@@ -34,12 +34,12 @@ training presses it is 16–46% of the movement, and 16–20% on the deep ones.
 *O1, pressed 30 mm left of the centre and also never used for fitting: the same model, with the cap where
 it was.*
 
-- **Stiffness.** E = 178 kPa at small strain. The cells start to buckle at 7% strain (a 12.5 kPa plateau)
+- **Stiffness:** E = 178 kPa at small strain. The cells start to buckle at 7% strain (a 12.5 kPa plateau)
   and the crushed cells touch from 55%. E is the least certain number: each dead weight alone gives
   98–183 kPa.
-- **Damping.** 12% of the stiffness relaxes with a 0.34 s time constant, plus a 1.2 ms dashpot. It barely
+- **Damping:** 12% of the stiffness relaxes with a 0.34 s time constant, plus a 1.2 ms dashpot. It barely
   shows in the dots: switching it off changes the errors by less than 0.01 mm.
-- **MuJoCo baseline.** The same block in MuJoCo 4.0, scored the same way, has 1.1–2.4 times our error.
+- **MuJoCo baseline:** the same block in MuJoCo 4.0, scored the same way, has 1.1–2.4 times our error.
   A finer grid, MuJoCo's plasticity and its inversion-proof material do not close the gap
   ([details](docs/mujoco.md)).
 
@@ -72,9 +72,9 @@ Every step is also a command, listed in [docs/pipeline.md](docs/pipeline.md).
 
 ## How it works
 
-1. **Capture.** One iPhone on a tripod films the block's dotted front face (15 × 7 dots) in slow motion.
+1. **Capture:** one iPhone on a tripod films the block's dotted front face (15 × 7 dots) in slow motion.
    Slow motion drops frames, so every frame keeps its own timestamp.
-2. **Calibration.** A printed checkerboard ([printable PDF](docs/checkerboard_260x110mm.pdf), 26 × 11
+2. **Calibration:** a printed checkerboard ([printable PDF](docs/checkerboard_260x110mm.pdf), 26 × 11
    squares of 10 mm) stands flat against the dotted face in the first clip, and its 250 inner corners map
    pixels to millimetres. Rulers on the foam then correct heights on the face by 4.9%, because the card
    sat slightly off the face's plane.
@@ -83,9 +83,9 @@ Every step is also a command, listed in [docs/pipeline.md](docs/pipeline.md).
 
    *Left: the printed checkerboard standing flat against the dotted face (calibration clip C1). Right: the
    same camera view without the card. The board's corners give the pixel-to-millimetre map for the dots.*
-3. **Tracking.** Each dot is a contrast-weighted centroid matched to the grid. Two dots on the bottle give
+3. **Tracking:** each dot is a contrast-weighted centroid matched to the grid. Two dots on the bottle give
    the cap's depth and tilt. On synthetic clips with known truth, dot positions are accurate to 0.015 mm.
-4. **Model.** A hexahedral finite-element grid (a voxel grid) of the whole 234 × 140 × 73 mm block. The
+4. **Model:** a hexahedral finite-element grid (a voxel grid) of the whole 234 × 140 × 73 mm block. The
    foam is crushable (linear, a buckling plateau, densification), the cut top is softer, the support
    gives a little, and time enters through Fung's quasi-linear viscoelasticity plus a dashpot. The dots
    ride on the face nodes.
@@ -113,11 +113,11 @@ Details: [docs/pipeline.md](docs/pipeline.md) (clips to tracked dots), [docs/mod
   lifted at 1.2 m/s, so only the slow 12% relaxation is visible.
 - **Most of the error is at the deepest frames**, in the top row beside the cap and in the bottom row.
   Sideways motion of the top row is underpredicted: 6–7 mm against 9–12 mm measured in H1.
-- **The camera setup is good, not perfect.** The checkerboard's hold-out error is 0.32 mm, the two
+- **The camera setup adds small errors.** The checkerboard's hold-out error is 0.32 mm, the two
   checkerboard clips differ by 0.43 mm, and static features show 0.5–2 px of apparent camera shift within
   most clips. Each clip is measured from its own rest frame, and the tracks are not corrected for that
   shift.
-- **One block, one indenter, presses by hand.** The fitted numbers describe this foam in this setup.
+- **One block, one indenter, presses by hand:** the fitted numbers describe this foam in this setup.
 
 ## What's in the repository
 

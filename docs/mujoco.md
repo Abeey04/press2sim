@@ -6,21 +6,21 @@ same presses, same dots, same input. Run it after `model` with
 
 ![The real H1 press, our simulated block and MuJoCo's, all driven by the same measured cap depth](../media/H1_vs_mujoco.gif)
 
-**Setup.** A soft-body ("flex") grid of 24 × 14 × 8 vertices over the whole block, with the fitted
+**Setup:** a soft-body ("flex") grid of 24 × 14 × 8 vertices over the whole block, with the fitted
 Young's modulus and damping, its base pinned to the table, and the cap as a kinematic box that follows
 the measured cap depth. Poisson's ratio was picked the way ours was, on the training presses (0.3 beat 0).
 Making it run at all took two fixes:
 
-- **Integrator.** The real block is so light (78 g) for its stiffness that its elastic waves are fast,
+- **Integrator:** the real block is so light (78 g) for its stiffness that its elastic waves are fast,
   and MuJoCo's cheaper integrators blew up within milliseconds. It runs with the implicit `discrete`
   integrator at 1 ms steps, with the foam's mass scaled up 100× and gravity off. The presses are
   still much slower than the block's elastic response, so this doesn't change them.
-- **Contact.** MuJoCo's soft contacts give way against a light, stiff body: with default settings the
+- **Contact:** MuJoCo's soft contacts give way against a light, stiff body. With default settings the
   cap went straight through the foam. Short contact time constants, and driving the cap by where the
   foam surface under it actually is, fixed that: up to about 11 mm deep the surface under the cap follows
   the measured depth within 0.1 mm. Deeper than that it doesn't, for the reason in point 2.
 
-**What happened.**
+**What happened:**
 
 1. **Up to about 11 mm deep, the two solvers agree.** Given the same physics (linear elastic block,
    rigid table, no soft top), MuJoCo and our solver predict the dots within 7–18% of each other, which
@@ -56,14 +56,15 @@ Making it run at all took two fixes:
    depths), MuJoCo's error over the whole press is 2.97 mm against our 1.18 mm. Its inverted elements
    also stay inverted after the cap lifts, so the top row of dots ends 8–9 mm low over the middle of the
    block, where the real foam's top row is back within 0.4 mm.
-5. **Speed.** MuJoCo ran about 85× slower than real time: 8 minutes for H1's 5.7 s. Our model solves
+5. **Speed:** MuJoCo ran about 85× slower than real time (8 minutes for H1's 5.7 s). Our model solves
    its depth table once (about 40 s) and then simulates any press in about a second.
 
 `H1_ours_vs_mujoco.mp4` shows all three side by side: the real press, our block and MuJoCo's, given the
 same cap motion. `H1_vs_mujoco_profiles.png` compares the rows of dots at the deepest point.
 
-**Follow-up checks: was it MuJoCo, or how it was set up?** `python scripts/mujoco_checks.py --trials trials.csv --out out`
-(MuJoCo 4.0, about 45 minutes on 2 cores) writes `out/model/mujoco_checks.json` (the reference run's copy is in `results/model/`).
+**Follow-up checks** test whether the gap comes from MuJoCo itself or from how it was set up.
+`python scripts/mujoco_checks.py --trials trials.csv --out out` (MuJoCo 4.0, about 45 minutes on 2 cores)
+writes `out/model/mujoco_checks.json` (the reference run's copy is in `results/model/`).
 
 - **A finer grid doesn't stop the collapse.** With 13 vertex layers instead of 8, elements start turning
   inside out sooner (from 11 mm instead of 16 mm), which is what you'd expect if the material, not the
