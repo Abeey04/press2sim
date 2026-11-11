@@ -231,7 +231,8 @@ class FoamBlock:
             fine = min(fine, max(3.0, r / 1.5))
         else:
             xl, yl = (), ()
-        # skin = (thickness mm, relative stiffness): the cut top surface, with broken cells, is softer
+        # skin = (thickness mm, relative stiffness): a much softer top layer. It stands in for whatever keeps the
+        # first millimetres of the cap's travel from reaching the dots (docs/model.md, Limits)
         z_extra = () if skin is None else (H - skin[0],)
         b = Block(L, D, H, nu, x_lines=xl, y_lines=yl, fine=fine, z_lines=z_extra)
         self.b, self.load, self.eps_y, self.h, self.eps_d = b, load, eps_y, h, eps_d

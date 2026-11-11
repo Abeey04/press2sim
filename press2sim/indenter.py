@@ -36,6 +36,13 @@ def cap_path(t: np.ndarray, cap_mm: np.ndarray, tape_mm: np.ndarray, cfg: Config
     bottom = cap_est - ind.cap_dot_mm * k * axis
     tilt = np.where(both, np.degrees(np.arctan2(axis[:, 0], axis[:, 1])), np.nan)
     source = np.where(both, 2, np.where(have_cap, 1, np.where(np.isfinite(tape_mm[:, 0]), 3, 0)))
+    # A cap position seen in a single frame with nothing either side of it is not trusted: once the bottle
+    # is lost, a stray dark blob can pass for one of its dots for a frame and would set the deepest point.
+    seen = np.isfinite(bottom[:, 1])
+    lone = seen & ~np.r_[False, seen[:-1]] & ~np.r_[seen[1:], False]
+    bottom[lone] = np.nan
+    tilt[lone] = np.nan
+    source[lone] = 0
     return {"x_mm": bottom[:, 0], "z_mm": bottom[:, 1], "tilt_deg": tilt, "dot_separation_mm": L,
             "source": source, "bottle_scale": k, "separation_rest_mm": L0}
 

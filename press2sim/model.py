@@ -48,10 +48,11 @@ class Params:
     y0: float = 0.0               # cap's front edge behind the dotted face (mm)
     g: tuple = (0.15,)            # relaxing fraction(s) of the stiffness
     tau: tuple = (0.3,)           # their time constant(s) (s)
-    tau_v: float = 0.05           # dashpot in parallel: viscous force = E tau_v dR/dt (s)
+    tau_v: float = 0.00124        # dashpot in parallel: viscous force = E tau_v dR/dt (s). Not fitted: these
+                                  # clips cannot tell 0 from 20 ms, so it stays at what an earlier fit returned
     E: float = 30e3               # Young's modulus at small strain (Pa)
     support: float = 0.02         # stiffness of what the block stands on, per unit E (1/mm)
-    skin_t: float = 0.0           # softer layer at the cut top surface: thickness (mm, 0 = none)
+    skin_t: float = 0.0           # softer layer at the top surface: thickness (mm, 0 = none)
     skin_k: float = 1.0           # ... and its stiffness relative to the rest
 
     @property

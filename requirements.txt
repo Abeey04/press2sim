@@ -1,5 +1,5 @@
 numpy>=1.26
-scipy>=1.11
+scipy>=1.12       # 1.12 introduced the rtol argument of the iterative solvers used in fem.py
 opencv-python>=4.8
 av>=12.0
 matplotlib>=3.8

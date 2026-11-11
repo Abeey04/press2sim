@@ -310,9 +310,7 @@ def cmd_model(a, cfg, trials):
         start = Params(**{f.name: (tuple(d[f.name]) if isinstance(d.get(f.name), list) else d[f.name])
                           for f in fields(Params) if f.name in d})
         print(f"starting from {sfile}")
-    from .fit import SHAPE_STEPS
-    half = None if start is None else {k: v / 2 for k, v in SHAPE_STEPS.items()}   # warm start: smaller steps
-    p, report, preds, clips = MR.run(trials, out, Path(a.raw), log=print, video=False, start=start, shape_steps=half,
+    p, report, preds, clips = MR.run(trials, out, Path(a.raw), log=print, video=False, start=start,
                                      refit_shape=not (a.keep_shape and start is not None))
     if a.no_video:
         return

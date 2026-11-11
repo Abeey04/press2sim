@@ -1,10 +1,11 @@
 """Our model against MuJoCo on the same presses, the same dots and the same input (the cap's depth).
 
 Three models, each driven only by the measured cap depth:
-- ours: crushable foam, soft cut top, compliant support, quasi-linear viscoelastic (fitted);
+- ours: crushable foam, soft top layer, compliant support, quasi-linear viscoelastic (fitted);
 - our solver given MuJoCo's physics: linear elastic, rigid base, no soft top. If this agrees with
   MuJoCo, the two solvers agree, and any gap to "ours" is down to the physics MuJoCo lacks;
-- MuJoCo: a flex block with the fitted E and damping, Poisson's ratio picked on the training presses.
+- MuJoCo: a flex block with the fitted E and the model's dashpot as its damping, Poisson's ratio picked on
+  the training presses.
 """
 from __future__ import annotations
 

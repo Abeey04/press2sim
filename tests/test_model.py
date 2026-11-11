@@ -24,6 +24,64 @@ def test_crushable_foam_softens():
     assert foam.solve_depth(20.0) < 0.6 * lin.solve_depth(20.0)
 
 
+def test_shape_search_can_switch_the_soft_top_on(monkeypatch):
+    # the soft top needs a thickness and a softness together; a start without it must still reach it
+    from press2sim import fit as F
+
+    def loss(p, clips, cache, frames=None):
+        has_top = p.skin_t > 0 and p.skin_k < 1
+        return 1.0 + abs(p.skin_k - 0.07) if has_top else 2.0
+
+    monkeypatch.setattr(F, "shape_loss", loss)
+    best, best_loss, _ = F.fit_shape([], None, M.Params(), names=("skin_k", "skin_t"))
+    assert best.skin_t > 0 and best.skin_k < 1 and best_loss < 1.01
+
+
+def _toy_press(p):
+    """A press, hold and fast lift on a toy block whose face sinks most under the cap; dots as the model moves them."""
+    d = np.linspace(0, 20, 21)
+    xn, zn = np.linspace(0, 234, 40), np.linspace(0, 73, 12)
+    X, Z = np.meshgrid(xn, zn, indexing="ij")
+    face = np.zeros((len(d), len(xn), len(zn), 3))
+    face[..., 2] = -d[:, None, None] * np.exp(-((X - 117) / 45.0) ** 2) * (Z / 73.0)
+    tab = M.Table(d, d.copy(), face, xn, zn, 117.0)
+    t = np.arange(0, 4.0, 1 / 240)
+    depth = np.interp(t, [0, 0.5, 1.0, 2.0, 2.08, 4.0], [-5, 0, 12, 12, -20, -20])
+    cols, rows = np.meshgrid(47 + 10.0 * np.arange(15), 8 + 10.0 * np.arange(7))
+    rest = np.c_[cols.ravel(), rows.ravel()]
+    cd = M.ClipData("toy", "press", t, rest, np.zeros((len(t), 105, 2)), 0, depth=depth, x_c=117.0, t_end=float(t[-1]))
+    U, q, F, c = M.predict_clip(cd, tab, p)
+    k = np.where((t > 2.0) & ~c)[0][0]                         # the model foam lets go of the cap here
+    cd.disp, cd.events = U, {"t_contact": 0.5, "t_lift": 2.0, "t_release": float(t[k])}
+    return cd, tab
+
+
+def test_damping_fit_recovers_a_known_relaxation():
+    # the dent under the cap after the foam lets go is enough to find the relaxing fraction and its time
+    from press2sim import fit as F
+    true = M.Params(g=(0.2,), tau=(0.5,), tau_v=0.005)
+    cd, tab = _toy_press(true)
+    assert len(F.dent_dots(cd)) == 7 and F.dent_frames(cd).sum() > 300      # columns 87 to 147 mm, under the cap
+    p, loss, none = F.fit_time([cd], tab, M.Params(g=(0.08,), tau=(1.5,), tau_v=0.005))   # the dashpot is not fitted
+    assert abs(p.g[0] - 0.2) < 0.01 and abs(p.tau[0] - 0.5) < 0.03
+    assert loss < 0.01 < none
+
+
+def test_cap_seen_for_a_single_frame_is_dropped():
+    # a stray blob standing in for a bottle dot for one frame must not set the cap's height
+    from press2sim.config import Config
+    from press2sim.indenter import cap_path
+    t = np.arange(12) / 240.0
+    cap = np.full((12, 2), np.nan)
+    tape = np.full((12, 2), np.nan)
+    cap[:5] = [100.0, 90.0]
+    tape[:5] = [100.0, 136.5]
+    tape[8] = [100.0, 60.0]                    # one frame, long after the bottle was last seen
+    cp = cap_path(t, cap, tape, Config(), rest_sel=np.arange(12) < 3)
+    assert np.isfinite(cp["z_mm"][:5]).all() and not np.isfinite(cp["z_mm"][5:]).any()
+    assert cp["source"][8] == 0
+
+
 def test_qlv_instant_and_long_term_response():
     # linear elastic force R(q) = q: a step force F gives q = F/E at once and F/(E g_inf) eventually
     d = np.linspace(0, 10, 101)

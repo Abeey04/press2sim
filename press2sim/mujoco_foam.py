@@ -3,11 +3,12 @@
 MuJoCo (3.x/4.x) has deformable "flex" bodies: here a 3D grid of vertices over the whole block with
 linear elasticity (Young's modulus, Poisson's ratio, stiffness-proportional damping), the base pinned
 to the table and the cap as a kinematic (mocap) box that follows the measured cap depth, touching the
-foam through MuJoCo's soft contacts. The fitted E and damping go in unchanged; Poisson's ratio is
-chosen the same fair way as for our model (best fit on the training presses).
+foam through MuJoCo's soft contacts. The fitted E goes in unchanged, with the model's dashpot (1.24 ms,
+not fitted) as MuJoCo's damping; Poisson's ratio is chosen the same fair way as for our model (best fit
+on the training presses).
 
-What MuJoCo cannot represent: the foam's cells buckling (its material is linear), the soft cut top
-surface, the compliant support, and the force relaxation. The comparison shows what those cost.
+What MuJoCo cannot represent: the foam's cells buckling (its material is linear), the soft top
+layer, the compliant support, and the force relaxation. The comparison shows what those cost.
 
 Numerics: the foam is very light (78 g) and comparatively stiff, so its elastic waves are fast
 (~75 m/s); MuJoCo needs its implicit "discrete" integrator, and the mass is scaled up 100x with gravity

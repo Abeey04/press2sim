@@ -35,6 +35,7 @@ with `--config`. `media/calibration.jpg` shows the board in this session, and
 | 6. Model | `python -m press2sim model --trials trials.csv --raw raw` | About 20 minutes on 2 cores. Writes `out/model/`: the fitted parameters, the prediction errors, plots and the comparison videos. See [model.md](model.md). |
 | 7. Videos | `python -m press2sim simulate --trials trials.csv --raw raw` | `out/model/H1_simulation.mp4` and `O1_simulation.mp4`: the simulated block next to the real clip. |
 | 8. MuJoCo (optional) | `python -m press2sim mujoco --trials trials.csv --raw raw`, then `python scripts/mujoco_checks.py --trials trials.csv --out out` | See [mujoco.md](mujoco.md). |
+| 9. Model checks (optional) | `python scripts/model_checks.py --trials trials.csv --out out` | About 15 minutes. Writes `out/model/model_checks.json`: the soft top layer under the cap, the stiffness under other assumptions, what the dent after release says about damping. Add `--part numerics` for finer grids (40 minutes more). See [model.md](model.md). |
 
 `notebooks/01_reproduce.ipynb` runs all of these in order and compares your numbers with `results/`.
 
@@ -95,14 +96,17 @@ Each line from step 4 reports the following. Check them:
   | Check | Result |
   |---|---|
   | Calibration hold-out error | 0.06 mm |
-  | Dot positions | 0.015 mm RMS, worst 0.06 mm, during a 29 mm press |
-  | Cap height | 0.014 mm RMS |
-  | Bottle tilt | within 0.03° |
-  | Contact time | within one frame |
-  | Maximum depth | 29.0 mm |
-  | Frames tracked | 100% |
+  | Dot movement from rest (what the model is fitted to) | 0.03 mm RMS, worst 0.17 mm, during a 29 mm press |
+  | Dot positions | 0.3–0.4 mm RMS, nearly all of it one offset per clip: x is measured from the block's left end and heights from its base, both found from the foam's outline. The centroids themselves scatter by 0.01 mm. |
+  | Cap depth, while pressing and holding | 0.27 mm RMS |
+  | Maximum depth | 29.2 mm (true 29.0) |
+  | Contact time | 9 ms early (two frames) |
+  | Hold time | 1.00 s (true 1.0) |
+  | Bottle tilt | within 0.04° |
+  | Dots tracked | 100% of frames |
+  | Release | not followed: the rendered release is instantaneous, and the bottle's dots are lost there. Real lifts build up over several frames; lift and release were found in all 13 real presses. |
 
-  To rerun it (about 6 minutes): `python scripts/make_synthetic.py syn --rotate180`, then `python -m press2sim all --trials syn/trials.csv --raw syn/raw --out syn/out --pairs ""`. Or set `PRESS2SIM_SLOW=1` and run pytest.
+  To rerun it (about 6 minutes): `python scripts/make_synthetic.py syn --rotate180`, then `python -m press2sim all --trials syn/trials.csv --raw syn/raw --out syn/out --pairs "" --config syn/config.json`. Or set `PRESS2SIM_SLOW=1` and run pytest. The `config.json` holds the rendered face's ruler reading (dot rows 60 mm apart); the default in `config.py` is the real block's 59 mm.
 - **Real frames** in `tests/data`, from the session: all 105 dots found and labelled, and both bottle dots found.
 - **The real session**, for comparison: calibration hold-out error 0.32 mm, rest noise 0.01–0.09 mm per clip,
   and an apparent camera shift of 0.5–2.2 px within most clips. The README lists these under limitations.

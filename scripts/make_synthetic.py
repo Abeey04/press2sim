@@ -3,7 +3,8 @@
 The scene copies the real setup: 234 x 73 mm face with a 15 x 7 grid of 4 mm dots, the bottle
 (yellow cap, two dots) pressing at the middle, a checkerboard card for calibration, a sticky-note
 slate at the start of each clip, mains flicker, sensor noise, HEVC compression, and iPhone-style
-dropped frames (uneven timestamps). The true dot and cap positions are saved next to each clip.
+dropped frames (uneven timestamps). The true dot and cap positions are saved next to each clip, with a
+config.json holding the rendered face's ruler reading (pass it to the pipeline with --config).
 
 usage: python scripts/make_synthetic.py OUT_DIR [--rotate180]
 """
@@ -11,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import subprocess
 from fractions import Fraction
 from pathlib import Path
@@ -261,6 +263,9 @@ def make(out: Path, rotate180=False, seed=0):
         w.writerow(["C1", "SYN_C1.MOV", "calib", "", "", "", "", "", "synthetic"])
         w.writerow(["S1", "SYN_S1.MOV", "static", "", "", "", "", "", "synthetic"])
         w.writerow(["T05", "SYN_T05.MOV", "press", "29", "slow", "1", "", "no", "synthetic"])
+    # the rendered face's own ruler reading: its dot rows are exactly 60 mm apart, where the real block's
+    # hand-marked rows (the default in config.py) measured 59 mm
+    (out / "config.json").write_text(json.dumps({"grid": {"measured_row_span_mm": 60.0}}))
     return out
 
 

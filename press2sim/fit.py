@@ -4,8 +4,8 @@ Order matters and keeps each step small:
 1. shape (nu, eps_y, h, y0): only frames where the cap is pressing. With the cap's depth imposed,
    quasi-linear viscoelasticity leaves the deformation's shape purely elastic, so these four
    parameters can be fitted without knowing the damping;
-2. damping (g_1, tau_1, g_2, tau_2): whole training presses, mostly decided by how the foam lets go
-   of the cap and creeps back afterwards;
+2. damping (g, tau): the dent the cap leaves behind in the training presses, measured at the top-row
+   dots under the cap from the moment the foam lets go of it. The dashpot is not fitted;
 3. stiffness E: the dead-weight clips, where the force is known (m g). Hand presses cannot give E:
    the hand's force was never measured.
 The held-out clips (a fresh press, an off-centre press, a fingertip) are never used for fitting.
@@ -24,7 +24,11 @@ from . import model as M
 
 SHAPE_BOUNDS = {"nu": (0.0, 0.45), "eps_y": (0.02, 0.4), "h": (0.003, 1.0), "y0": (-10.0, 25.0), "eps_d": (0.4, 0.95),
                 "skin_t": (1.0, 9.0), "skin_k": (0.02, 1.0)}
-SHAPE_STEPS = {"nu": 0.1, "eps_y": 0.04, "h": 0.08, "y0": 6.0, "eps_d": 0.12, "skin_t": 2.0, "skin_k": 0.06}
+SHAPE_STEPS = {"nu": 0.05, "eps_y": 0.02, "h": 0.04, "y0": 3.0, "eps_d": 0.06, "skin_t": 1.0, "skin_k": 0.03}
+# Where the shape search starts when no earlier fit is given. These values were set by hand from earlier
+# exploratory fits, with the soft top already on: the search changes one parameter at a time, and the soft
+# top only exists once it has both a thickness and a softness.
+SHAPE_START = {"nu": 0.0, "eps_y": 0.06, "h": 0.01, "eps_d": 0.64, "y0": -3.0, "skin_t": 3.0, "skin_k": 0.1}
 
 
 def _log(msg, log):
@@ -55,6 +59,15 @@ def fit_shape(clips, cache, p0: M.Params, passes=2, log=None,
     _log(f"  shape start: RMS {best_loss:.3f} mm  {best.shape_key()}", log)
     steps = dict(SHAPE_STEPS, **(steps or {}))
     history = [(best.shape_key(), best_loss)]
+    if best.skin_t <= 0 or best.skin_k >= 1:
+        # no soft top yet: changing its thickness or its softness alone leaves the model as it is, so the
+        # one-at-a-time search below could never switch it on. Try the two together first.
+        cand = replace(best, skin_t=SHAPE_START["skin_t"], skin_k=SHAPE_START["skin_k"])
+        loss = shape_loss(cand, clips, cache, frames)
+        history.append((cand.shape_key(), loss))
+        _log(f"  shape with a soft top ({cand.skin_t:g} mm at {cand.skin_k:g} E): RMS {loss:.3f} mm", log)
+        if loss < best_loss:
+            best, best_loss = cand, loss
     for ps in range(passes):
         for name in names:
             lo, hi = SHAPE_BOUNDS[name]
@@ -78,12 +91,12 @@ def fit_shape(clips, cache, p0: M.Params, passes=2, log=None,
 
 def _time_vec(p):
     g1, = p.g; t1, = p.tau
-    return np.array([np.log(g1 / (1 - g1)), np.log(t1), np.log(p.tau_v)])
+    return np.array([np.log(g1 / (1 - g1)), np.log(t1)])
 
 
 def _vec_time(v, p):
     g1 = 1 / (1 + np.exp(-v[0]))
-    return replace(p, g=(float(g1),), tau=(float(np.exp(v[1])),), tau_v=float(np.exp(v[2])))
+    return replace(p, g=(float(g1),), tau=(float(np.exp(v[1])),))
 
 
 def recovery_frames(cd, before=0.05, after=2.5):
@@ -94,7 +107,8 @@ def recovery_frames(cd, before=0.05, after=2.5):
     return (cd.t >= tl - before) & (cd.t <= min(tl + after, cd.t_end))
 
 
-def time_loss(p: M.Params, clips, tab):
+def recovery_loss(p: M.Params, clips, tab):
+    """RMS error (mm) of all dots around the lift. Reported, not fitted: the dent is a small part of it."""
     errs = []
     for cd in clips:
         U, q, F, c = M.predict_clip(cd, tab, p)
@@ -103,19 +117,58 @@ def time_loss(p: M.Params, clips, tab):
     return M.rms(np.concatenate(errs))
 
 
-def fit_time(clips, tab, p0: M.Params, log=None, maxiter=150):
-    """Damping from the moments it is visible: the cap lifting off and the foam coming back."""
-    clips = [cd for cd in clips if cd.events.get("t_lift") is not None]
+TOP_ROW = np.arange(6 * 15, 7 * 15)
+
+
+def dent_dots(cd, half_width=M.CAP[0] / 2):
+    """The top-row dots under the cap, where the foam is left dented when the cap lifts."""
+    return TOP_ROW[np.abs(cd.rest[TOP_ROW, 0] - cd.x_c) <= half_width]
+
+
+def dent_frames(cd):
+    """From the moment the foam lets go of the cap (as measured) to the end of the clip."""
+    tr = cd.events.get("t_release")
+    if tr is None:
+        return np.zeros(len(cd.t), bool)
+    return (cd.t >= tr) & (cd.t <= cd.t_end)
+
+
+def dent_error(cd, U):
+    """Error (frames, dots) in the vertical movement of the dots under the cap, after the foam lets go."""
+    sel = dent_frames(cd)
+    j = dent_dots(cd)
+    return U[sel][:, j, 1] - cd.disp[sel][:, j, 1]
+
+
+def time_loss(p: M.Params, clips, tab):
+    """RMS error (mm) of the dent the cap leaves behind, over the clips."""
+    return M.rms(np.concatenate([dent_error(cd, M.predict_clip(cd, tab, p)[0]).ravel() for cd in clips]))
+
+
+def fit_time(clips, tab, p0: M.Params, log=None, maxiter=300):
+    """Damping from where it shows: the dent under the cap after the foam lets go of it.
+
+    While the cap presses, its depth sets the dots and damping changes nothing. Once the foam lets go, how
+    fast the dent closes is all damping. Scored over all 105 dots that signal is drowned by the shape error
+    elsewhere (such a score cannot tell 12% relaxation from none), so the score here is the vertical movement
+    of the top-row dots under the cap, from the measured release to the end of the clip.
+
+    Two numbers are fitted: the relaxing fraction g and its time constant tau. The dashpot tau_v is left as
+    it is in p0. Neither the dent nor the moment of release can tell a dashpot of 0 from one of 20 ms (the
+    dent score moves by under 1%, the release time not at all; scripts/model_checks.py shows both), and a
+    fitted value would only add an unfounded viscous force while the cap presses fast.
+    """
+    clips = [cd for cd in clips if cd.events.get("t_release") is not None]
     if len(p0.g) != 1:
         p0 = replace(p0, g=(0.15,), tau=(0.3,))
     f = lambda v: time_loss(_vec_time(v, p0), clips, tab)
     v0 = _time_vec(p0)
     res = minimize(f, v0, method="Nelder-Mead", options={"maxiter": maxiter, "xatol": 1e-3, "fatol": 1e-5,
-                                                          "initial_simplex": v0 + np.vstack([np.zeros(3), np.eye(3) * 0.8])})
+                                                          "initial_simplex": v0 + np.vstack([np.zeros(2), np.eye(2) * 0.8])})
     p = _vec_time(res.x, p0)
     none = time_loss(replace(p, g=(1e-9,), tau_v=1e-9), clips, tab)
-    _log(f"  damping: relaxing fraction {p.g[0]:.3f} with tau {p.tau[0]:.3f} s, dashpot tau_v {p.tau_v * 1e3:.1f} ms; "
-         f"release-and-recovery RMS {res.fun:.3f} mm (no damping {none:.3f} mm, {res.nfev} runs)", log)
+    _log(f"  damping: relaxing fraction {p.g[0]:.3f} with tau {p.tau[0]:.3f} s (dashpot held at {p.tau_v * 1e3:.2f} ms); "
+         f"dent under the cap after release RMS {res.fun:.3f} mm (no damping {none:.3f} mm, {res.nfev} runs)", log)
     return p, float(res.fun), float(none)
 
 

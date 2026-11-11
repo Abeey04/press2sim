@@ -2,393 +2,54 @@
  "cycles": {
   "StVK": {
    "force_N_at_surface_depth": {
-    "5 mm": 116.66605802905843,
-    "10 mm": 178.55781076870304,
-    "15 mm": 320.8419432495554,
-    "20 mm": 295.7912636658444,
-    "25 mm": 628.310119122332,
-    "30 mm": 465.549248908626
+    "5 mm": 119.03241839412533,
+    "10 mm": 188.01776148576104,
+    "15 mm": 303.03055347899624,
+    "20 mm": 313.97284666455664,
+    "25 mm": 544.5381112148964,
+    "30 mm": 464.21264003959055
    },
-   "peak_force_N": 1055.6510290544807,
-   "surface_depth_at_hold_mm": 35.39418428234469,
+   "peak_force_N": 1276.0768394865115,
+   "surface_depth_at_hold_mm": 35.36132584923767,
    "inverted_layer_pairs_at_hold": 14,
-   "dent_after_release_mm": 15.868986434160202,
+   "dent_after_release_mm": 15.86959044034198,
    "unstable": false,
    "poisson": 0.3,
-   "wall_s": 102
+   "wall_s": 65
   },
   "StVK + J2 plasticity, yield strain 0.07": {
    "force_N_at_surface_depth": {
-    "5 mm": 106.121077829589,
-    "10 mm": 71.21156598528367,
-    "15 mm": 33.65677487020962,
-    "20 mm": 49.348185420211614,
-    "25 mm": 86.8512561485181,
-    "30 mm": 95.23392730668473
+    "5 mm": 108.38201835278356,
+    "10 mm": 73.57465669187535,
+    "15 mm": 36.55200650101777,
+    "20 mm": 51.08294232693722,
+    "25 mm": 91.45684506954846,
+    "30 mm": 100.50587924640409
    },
-   "peak_force_N": 113.4781201550855,
-   "surface_depth_at_hold_mm": 31.57204556007819,
+   "peak_force_N": 117.14677831753785,
+   "surface_depth_at_hold_mm": 31.56155966280333,
    "inverted_layer_pairs_at_hold": 9,
-   "dent_after_release_mm": 27.8760343100546,
+   "dent_after_release_mm": 27.882039558412114,
    "unstable": false,
    "poisson": 0.3,
-   "wall_s": 78
+   "wall_s": 51
   },
   "Stable Neo-Hookean": {
    "force_N_at_surface_depth": {
-    "5 mm": 114.36139363576977,
-    "10 mm": 226.83686314588365,
-    "15 mm": 359.3269252745459,
-    "20 mm": 528.4716464024755,
-    "25 mm": 5211.739947103293,
-    "30 mm": 8810.382126945577
+    "5 mm": 116.9356813673347,
+    "10 mm": 227.8205114918481,
+    "15 mm": 363.81822253118196,
+    "20 mm": 566.7169734320787,
+    "25 mm": 1532.1176466825766,
+    "30 mm": 10249.643789351845
    },
-   "peak_force_N": 10552.54916762959,
-   "surface_depth_at_hold_mm": 29.960147060510415,
+   "peak_force_N": 12668.014610406171,
+   "surface_depth_at_hold_mm": 30.327848323338895,
    "inverted_layer_pairs_at_hold": 0,
-   "dent_after_release_mm": 0.0019412410375563294,
+   "dent_after_release_mm": 0.0023415340564131304,
    "unstable": false,
    "poisson": 0.0,
-   "wall_s": 137
-  }
- },
- "stable_neo_hookean": {
-  "contact solimp": "0.99 0.9999 0.001 0.5 2",
-  "tables": {
-   "nu=0.0, x=86.5": {
-    "valid_to_mm": 56.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.97,
-     4.41,
-     7.34,
-     11.04,
-     16.07,
-     21.97,
-     29.09,
-     36.98,
-     45.99,
-     56.71
-    ],
-    "inverted_layer_pairs": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     1,
-     1,
-     6
-    ]
-   },
-   "nu=0.0, x=117.0": {
-    "valid_to_mm": 56.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.96,
-     4.41,
-     7.33,
-     11.07,
-     15.95,
-     21.97,
-     29.11,
-     37.01,
-     45.94,
-     57.04
-    ],
-    "inverted_layer_pairs": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     1,
-     2,
-     8
-    ]
-   },
-   "nu=0.3, x=86.5": {
-    "valid_to_mm": 37.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.96,
-     4.41,
-     7.41,
-     11.41,
-     16.38,
-     21.99,
-     28.95,
-     36.94,
-     48.41,
-     57.42
-    ],
-    "inverted_layer_pairs": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     1,
-     7,
-     8
-    ]
-   },
-   "nu=0.3, x=117.0": {
-    "valid_to_mm": 46.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.96,
-     4.43,
-     7.4,
-     11.42,
-     16.4,
-     22.02,
-     29.03,
-     37.03,
-     47.89,
-     58.88
-    ],
-    "inverted_layer_pairs": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     1,
-     7,
-     9
-    ]
-   },
-   "StVK nu=0.3, same contact, x=86.5": {
-    "valid_to_mm": 11.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.97,
-     4.45,
-     7.49,
-     11.77,
-     21.42,
-     26.53,
-     34.69,
-     42.55,
-     51.62,
-     60.57
-    ]
-   },
-   "StVK nu=0.3, same contact, x=117.0": {
-    "valid_to_mm": 11.0,
-    "surface_depth_mm": [
-     -0.0,
-     1.97,
-     4.45,
-     7.49,
-     11.81,
-     21.36,
-     26.53,
-     34.69,
-     42.9,
-     52.58,
-     61.48
-    ]
-   }
-  },
-  "training RMS on common frames, SNH nu=0.0": 3.1958587973877366,
-  "training RMS on common frames, SNH nu=0.3": 3.4183273186552507,
-  "nu chosen on training presses": 0.0,
-  "rows": [
-   {
-    "clip": "T01",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 23.9326874844962,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 1.1540674720410122,
-    "MuJoCo SNH RMS error mm": 2.2312484291016137,
-    "ours RMS error mm": 0.8276366898573466,
-    "RMS movement mm": 2.7846870304168103
-   },
-   {
-    "clip": "T02",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 25.55357732439606,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 1.382127561510652,
-    "MuJoCo SNH RMS error mm": 3.071059622351956,
-    "ours RMS error mm": 1.219666698981889,
-    "RMS movement mm": 3.940935387938019
-   },
-   {
-    "clip": "T03",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 20.443747987200325,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 1.3392492112641272,
-    "MuJoCo SNH RMS error mm": 2.5952717422558815,
-    "ours RMS error mm": 1.1195387670743002,
-    "RMS movement mm": 2.238509262368115
-   },
-   {
-    "clip": "T04",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 32.59621491795492,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 1.8303440183479482,
-    "MuJoCo SNH RMS error mm": 2.7852363812869645,
-    "ours RMS error mm": 1.1025185029916096,
-    "RMS movement mm": 5.713245478237882
-   },
-   {
-    "clip": "T05",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 31.915033630715612,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 1.691572593572218,
-    "MuJoCo SNH RMS error mm": 2.9055451296216015,
-    "ours RMS error mm": 1.0702302183296395,
-    "RMS movement mm": 5.478595634218984
-   },
-   {
-    "clip": "T06",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 33.95522139262987,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 2.0586081378824073,
-    "MuJoCo SNH RMS error mm": 2.930006230677197,
-    "ours RMS error mm": 1.152845884382676,
-    "RMS movement mm": 6.658215174122236
-   },
-   {
-    "clip": "T07",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 45.11787433522782,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 4.101338807618016,
-    "MuJoCo SNH RMS error mm": 4.136465029920758,
-    "ours RMS error mm": 1.8224602068269022,
-    "RMS movement mm": 10.694285801834447
-   },
-   {
-    "clip": "T08",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 45.5525395570151,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 4.417113230772155,
-    "MuJoCo SNH RMS error mm": 4.442786075781436,
-    "ours RMS error mm": 1.9928204942016046,
-    "RMS movement mm": 11.594391264272971
-   },
-   {
-    "clip": "T09",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 47.61630503659997,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 5.031248675195996,
-    "MuJoCo SNH RMS error mm": 4.905972200185556,
-    "ours RMS error mm": 2.326453201012785,
-    "RMS movement mm": 13.126242435166123
-   },
-   {
-    "clip": "R1",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 35.02784028139817,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 2.2741256566407606,
-    "MuJoCo SNH RMS error mm": 3.110391362643997,
-    "ours RMS error mm": 1.0731953390797917,
-    "RMS movement mm": 7.1684785202447605
-   },
-   {
-    "clip": "R2",
-    "set": "training",
-    "x": 117.0,
-    "max_depth_mm": 49.976115093705076,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 4.947690683004553,
-    "MuJoCo SNH RMS error mm": 4.5935483537334925,
-    "ours RMS error mm": 2.4180380144267737,
-    "RMS movement mm": 13.179689741458473
-   },
-   {
-    "clip": "H1",
-    "set": "held out",
-    "x": 117.0,
-    "max_depth_mm": 38.357129488294326,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 2.821972735330828,
-    "MuJoCo SNH RMS error mm": 3.3873852075698654,
-    "ours RMS error mm": 1.3286798097498342,
-    "RMS movement mm": 8.219475062403363
-   },
-   {
-    "clip": "O1",
-    "set": "held out",
-    "x": 86.5,
-    "max_depth_mm": 32.43507284633034,
-    "SNH valid to mm": 56.0,
-    "frames": 16,
-    "frames scored": 16,
-    "MuJoCo StVK RMS error mm": 2.0930874084481936,
-    "MuJoCo SNH RMS error mm": 2.190903704342328,
-    "ours RMS error mm": 1.1748691463716254,
-    "RMS movement mm": 6.113000312017938
-   }
-  ],
-  "H1 time domain": {
-   "rms_error_mm": 3.246113342539602,
-   "rms_movement_mm": 6.925617275604689,
-   "max_movement_mm": 33.44268674351175,
-   "relative_error": 0.46871104962354093,
-   "error_at_deepest_mm": 4.6977531996091395,
-   "movement_at_deepest_mm": 10.244458491052795,
-   "error_recovery_mm": 1.7374725905909367,
-   "movement_recovery_mm": 2.917804640532533,
-   "unstable": false,
-   "wall_s": 0
+   "wall_s": 93
   }
  },
  "fine_grid": {
@@ -421,7 +82,7 @@
      11.9,
      17.8,
      23.8,
-     29.7,
+     29.8,
      35.7,
      41.6,
      47.6,
@@ -441,13 +102,13 @@
      17.2,
      22.9,
      28.6,
-     34.3,
+     34.4,
      40.1,
      45.8,
      51.5,
-     57.2,
-     63.0,
-     68.8
+     57.3,
+     63.1,
+     68.9
     ]
    },
    {
@@ -463,7 +124,7 @@
      32.8,
      38.2,
      43.7,
-     49.1,
+     49.2,
      54.6,
      60.2,
      65.8
@@ -474,18 +135,18 @@
     "inverted_layer_pairs_under_cap": 2,
     "front_column_heights_mm": [
      0.0,
-     5.3,
-     10.7,
-     16.0,
-     21.3,
-     26.6,
-     31.8,
-     36.9,
-     41.9,
-     47.0,
-     52.0,
-     57.0,
-     62.3
+     5.4,
+     10.8,
+     16.2,
+     21.5,
+     26.8,
+     32.1,
+     37.2,
+     42.3,
+     47.4,
+     52.3,
+     57.3,
+     62.4
     ]
    },
    {
@@ -495,15 +156,15 @@
      0.0,
      5.6,
      11.2,
-     16.8,
+     16.9,
      22.5,
      28.2,
      33.9,
      39.6,
-     45.3,
-     51.1,
-     57.0,
+     45.4,
      51.2,
+     57.0,
+     51.3,
      56.9
     ]
    },
@@ -518,7 +179,7 @@
      21.6,
      26.9,
      32.0,
-     37.0,
+     37.1,
      41.9,
      46.6,
      51.9,
@@ -596,11 +257,11 @@
      0.0,
      9.3,
      18.8,
-     28.2,
+     28.1,
      37.5,
-     46.9,
+     46.8,
      56.3,
-     65.9
+     65.8
     ]
    },
    {
@@ -622,13 +283,13 @@
     "inverted_layer_pairs_under_cap": 6,
     "front_column_heights_mm": [
      0.0,
-     9.4,
+     9.5,
      19.0,
      28.5,
      38.0,
-     47.3,
+     47.2,
      56.4,
-     56.2
+     56.0
     ]
    },
    {
@@ -636,108 +297,449 @@
     "inverted_layer_pairs_under_cap": 7,
     "front_column_heights_mm": [
      0.0,
-     8.6,
+     8.5,
      17.3,
-     26.0,
-     34.5,
-     42.8,
-     51.4,
-     41.8
+     25.9,
+     34.4,
+     42.6,
+     51.1,
+     50.7
     ]
    },
    {
     "depth_mm": 29.0,
-    "inverted_layer_pairs_under_cap": 14,
+    "inverted_layer_pairs_under_cap": 11,
     "front_column_heights_mm": [
      0.0,
-     9.9,
-     20.0,
-     30.1,
-     40.1,
-     33.4,
-     43.0,
-     33.4
+     9.7,
+     19.6,
+     29.6,
+     39.3,
+     32.9,
+     42.3,
+     43.6
     ]
    }
   ],
   "surface_depth_13_layers": [
    -0.0,
    1.5,
-   4.03,
-   7.02,
-   11.02,
-   16.77,
-   24.1,
-   29.19
+   4.01,
+   7.01,
+   11.08,
+   16.74,
+   24.06,
+   29.14
   ],
   "surface_depth_8_layers": [
    -0.0,
-   1.56,
-   3.99,
-   6.99,
-   11.01,
-   20.06,
-   27.96,
-   35.21,
-   41.99,
-   50.91,
-   57.04
+   1.55,
+   4.0,
+   7.0,
+   11.0,
+   20.33,
+   27.08,
+   33.89,
+   41.53,
+   49.8,
+   56.07
   ],
   "rows": [
    {
     "clip": "T01",
     "frames": 16,
-    "8 layers RMS error mm": 1.0775079469651598,
-    "13 layers RMS error mm": 0.985939950833079
+    "8 layers RMS error mm": 1.0839583027051267,
+    "13 layers RMS error mm": 0.9810866631863702
    },
    {
     "clip": "T02",
     "frames": 16,
-    "8 layers RMS error mm": 1.3677626755419032,
-    "13 layers RMS error mm": 1.1991754616961885
+    "8 layers RMS error mm": 1.3419614070061223,
+    "13 layers RMS error mm": 1.191247428739217
    },
    {
     "clip": "T03",
     "frames": 16,
-    "8 layers RMS error mm": 1.2682507916655175,
-    "13 layers RMS error mm": 1.0873663317379623
+    "8 layers RMS error mm": 1.2632023395911625,
+    "13 layers RMS error mm": 1.0690911302932207
    },
    {
     "clip": "T04",
     "frames": 7,
-    "8 layers RMS error mm": 1.1209040744450844,
-    "13 layers RMS error mm": 0.9901729159370899
+    "8 layers RMS error mm": 1.1187493856242738,
+    "13 layers RMS error mm": 0.9659313956375528
    },
    {
     "clip": "T05",
     "frames": 8,
-    "8 layers RMS error mm": 1.1871350078557978,
-    "13 layers RMS error mm": 1.1077802055836756
+    "8 layers RMS error mm": 1.1511675868543612,
+    "13 layers RMS error mm": 1.087330053253085
    },
    {
     "clip": "T06",
     "frames": 5,
-    "8 layers RMS error mm": 1.0526973928549932,
-    "13 layers RMS error mm": 0.8716846542526197
+    "8 layers RMS error mm": 1.048758606251719,
+    "13 layers RMS error mm": 0.8333215243595932
    },
    {
     "clip": "T07",
     "frames": 5,
-    "8 layers RMS error mm": 1.128032051138432,
-    "13 layers RMS error mm": 1.0308958466364757
+    "8 layers RMS error mm": 1.128532674261369,
+    "13 layers RMS error mm": 1.017086756923964
    },
    {
     "clip": "R1",
     "frames": 5,
-    "8 layers RMS error mm": 1.1050722632111494,
-    "13 layers RMS error mm": 0.9860552437621499
+    "8 layers RMS error mm": 1.0980574137544237,
+    "13 layers RMS error mm": 0.9663068212298204
    },
    {
     "clip": "H1",
     "frames": 5,
-    "8 layers RMS error mm": 0.9289091158788921,
-    "13 layers RMS error mm": 0.8557163501557333
+    "8 layers RMS error mm": 0.9257251841865496,
+    "13 layers RMS error mm": 0.8450160468093354
    }
   ]
+ },
+ "stable_neo_hookean": {
+  "contact solimp": "0.99 0.9999 0.001 0.5 2",
+  "tables": {
+   "nu=0.0, x=86.5": {
+    "valid_to_mm": 56.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.96,
+     4.4,
+     7.33,
+     11.05,
+     16.07,
+     22.05,
+     28.89,
+     36.97,
+     46.01,
+     56.53
+    ],
+    "inverted_layer_pairs": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     2,
+     8
+    ]
+   },
+   "nu=0.0, x=117.0": {
+    "valid_to_mm": 56.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.96,
+     4.41,
+     7.33,
+     11.08,
+     15.94,
+     21.95,
+     29.12,
+     36.99,
+     46.04,
+     57.54
+    ],
+    "inverted_layer_pairs": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     8
+    ]
+   },
+   "nu=0.3, x=86.5": {
+    "valid_to_mm": 37.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.96,
+     4.42,
+     7.4,
+     11.4,
+     16.37,
+     22.09,
+     28.99,
+     36.93,
+     48.25,
+     58.47
+    ],
+    "inverted_layer_pairs": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     6,
+     10
+    ]
+   },
+   "nu=0.3, x=117.0": {
+    "valid_to_mm": 37.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.95,
+     4.41,
+     7.39,
+     11.41,
+     16.39,
+     21.98,
+     29.02,
+     36.96,
+     48.54,
+     58.07
+    ],
+    "inverted_layer_pairs": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     7,
+     9
+    ]
+   },
+   "StVK nu=0.3, same contact, x=86.5": {
+    "valid_to_mm": 11.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.96,
+     4.45,
+     7.5,
+     11.78,
+     21.44,
+     26.53,
+     34.7,
+     42.51,
+     51.59,
+     60.47
+    ]
+   },
+   "StVK nu=0.3, same contact, x=117.0": {
+    "valid_to_mm": 11.0,
+    "surface_depth_mm": [
+     -0.0,
+     1.96,
+     4.45,
+     7.49,
+     11.81,
+     21.36,
+     26.51,
+     34.7,
+     42.76,
+     51.91,
+     60.74
+    ]
+   }
+  },
+  "training RMS on common frames, SNH nu=0.0": 2.7293738271546495,
+  "training RMS on common frames, SNH nu=0.3": 2.7432328209765617,
+  "nu chosen on training presses": 0.0,
+  "rows": [
+   {
+    "clip": "T01",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 23.9326874844962,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 1.154093705749633,
+    "MuJoCo SNH RMS error mm": 2.228740053154319,
+    "ours RMS error mm": 0.827636690206278,
+    "RMS movement mm": 2.7846870304168103
+   },
+   {
+    "clip": "T02",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 25.55357732439606,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 1.3800743280748242,
+    "MuJoCo SNH RMS error mm": 3.079136732803135,
+    "ours RMS error mm": 1.2196666993668348,
+    "RMS movement mm": 3.940935387938019
+   },
+   {
+    "clip": "T03",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 20.443747987200325,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 1.3370813959773409,
+    "MuJoCo SNH RMS error mm": 2.5933658312044003,
+    "ours RMS error mm": 1.119538767484369,
+    "RMS movement mm": 2.238509262368115
+   },
+   {
+    "clip": "T04",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 32.59621491795492,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 1.8166052020138603,
+    "MuJoCo SNH RMS error mm": 2.790439995834084,
+    "ours RMS error mm": 1.1025185031285112,
+    "RMS movement mm": 5.713245478237882
+   },
+   {
+    "clip": "T05",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 31.915033630715612,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 1.6783634129053207,
+    "MuJoCo SNH RMS error mm": 2.916869783327545,
+    "ours RMS error mm": 1.0702302185263055,
+    "RMS movement mm": 5.478595634218984
+   },
+   {
+    "clip": "T06",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 33.95522139262987,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 2.0298223526902572,
+    "MuJoCo SNH RMS error mm": 2.9142735394090633,
+    "ours RMS error mm": 1.1528458844715825,
+    "RMS movement mm": 6.658215174122236
+   },
+   {
+    "clip": "T07",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 45.11787433522782,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 4.081884494892063,
+    "MuJoCo SNH RMS error mm": 4.053470917332882,
+    "ours RMS error mm": 1.822460206629902,
+    "RMS movement mm": 10.694285801834447
+   },
+   {
+    "clip": "T08",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 45.5525395570151,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 4.410118079472761,
+    "MuJoCo SNH RMS error mm": 4.351065161658711,
+    "ours RMS error mm": 1.9928204939632956,
+    "RMS movement mm": 11.594391264272971
+   },
+   {
+    "clip": "T09",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 47.61630503659997,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 5.069376958329126,
+    "MuJoCo SNH RMS error mm": 4.804934201651237,
+    "ours RMS error mm": 2.326453200789874,
+    "RMS movement mm": 13.126242435166123
+   },
+   {
+    "clip": "R1",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 35.02784028139817,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 2.241560116780219,
+    "MuJoCo SNH RMS error mm": 3.0772433588729697,
+    "ours RMS error mm": 1.0731953390993731,
+    "RMS movement mm": 7.1684785202447605
+   },
+   {
+    "clip": "R2",
+    "set": "training",
+    "x": 117.0,
+    "max_depth_mm": 49.976115093705076,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 4.986486648508178,
+    "MuJoCo SNH RMS error mm": 4.50496989613423,
+    "ours RMS error mm": 2.4180380142660516,
+    "RMS movement mm": 13.179689741458473
+   },
+   {
+    "clip": "H1",
+    "set": "held out",
+    "x": 117.0,
+    "max_depth_mm": 38.357129488294326,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 2.775887543622437,
+    "MuJoCo SNH RMS error mm": 3.311874069956313,
+    "ours RMS error mm": 1.3286798096198063,
+    "RMS movement mm": 8.219475062403363
+   },
+   {
+    "clip": "O1",
+    "set": "held out",
+    "x": 86.5,
+    "max_depth_mm": 32.43507284633034,
+    "SNH valid to mm": 56.0,
+    "frames": 16,
+    "frames scored": 16,
+    "MuJoCo StVK RMS error mm": 2.0800474025477116,
+    "MuJoCo SNH RMS error mm": 2.210010989550421,
+    "ours RMS error mm": 1.174869146271282,
+    "RMS movement mm": 6.113000312017938
+   }
+  ],
+  "H1 time domain": {
+   "rms_error_mm": 3.2010847989318965,
+   "rms_movement_mm": 6.925617275604689,
+   "max_movement_mm": 33.44268674351175,
+   "relative_error": 0.4622093124042006,
+   "error_at_deepest_mm": 4.671832117924258,
+   "movement_at_deepest_mm": 10.244458491052795,
+   "error_recovery_mm": 1.7150766371868111,
+   "movement_recovery_mm": 2.917804640532533,
+   "dent_error_mm": 0.4778267809449863,
+   "dent_movement_mm": 1.118900016440996,
+   "unstable": false,
+   "wall_s": 629
+  }
  }
 }

@@ -51,6 +51,9 @@ def metrics(cd: M.ClipData, U: np.ndarray, start=None):
     if rec.any():
         out["error_recovery_mm"] = M.rms(U[rec] - cd.disp[rec])
         out["movement_recovery_mm"] = M.rms(cd.disp[rec])
+    if cd.x_c is not None and F.dent_frames(cd).any():       # the dent under the cap after the foam lets go
+        out["dent_error_mm"] = M.rms(F.dent_error(cd, U))
+        out["dent_movement_mm"] = M.rms(cd.disp[F.dent_frames(cd)][:, F.dent_dots(cd), 1])
     rows = {}
     for r, name in ROW_NAMES.items():
         rows[name] = M.rms(err[:, r * 15:(r + 1) * 15])
@@ -238,7 +241,11 @@ def run(trials, out: Path, raw: Path, calib=None, rotation=None, log=print, vide
     held = [c for c in clips.values() if c.held_out]
     log(f"training presses: {', '.join(c.code for c in train)}")
     log(f"dead weights: {', '.join(c.code for c in weights)}; held out: {', '.join(c.code for c in held)}")
-    p = M.Params() if start is None else start
+    if start is None:
+        p = replace(M.Params(), **F.SHAPE_START)
+        log(f"shape search starts from the built-in start: {F.SHAPE_START}")
+    else:
+        p = start
     report = {"train": [c.code for c in train], "weights": [c.code for c in weights], "held_out": [c.code for c in held],
               "start": asdict(p)}
 
@@ -258,10 +265,13 @@ def run(trials, out: Path, raw: Path, calib=None, rotation=None, log=print, vide
         log(f"  shape RMS {report['shape']['rms_mm']:.3f} mm on the pressing frames; support pattern misfit "
             f"{sup_loss:.3f} (rigid {sup_rigid:.3f})")
 
-    log("3/4 damping (whole presses: letting go of the cap and creeping back)")
+    log("3/4 damping (the dent under the cap after the foam lets go of it)")
     tab = M.build_table(p, ("cap", 117.0), cache=cache)
     p, time_rms, time_none = F.fit_time(train, tab, p, log=log)
-    report["damping"] = {"recovery_rms_mm": time_rms, "recovery_rms_no_damping_mm": time_none}
+    lifted = [c for c in train if c.events.get("t_lift") is not None]
+    report["damping"] = {"dent_rms_mm": time_rms, "dent_rms_no_damping_mm": time_none,
+                         "recovery_rms_all_dots_mm": F.recovery_loss(p, lifted, tab),
+                         "recovery_rms_all_dots_no_damping_mm": F.recovery_loss(replace(p, g=(1e-9,), tau_v=1e-9), lifted, tab)}
 
     log("4/4 stiffness (dead weights, force known)")
     ptab = M.build_table(p, ("plate",), cache=cache)
@@ -301,6 +311,7 @@ def run(trials, out: Path, raw: Path, calib=None, rotation=None, log=print, vide
                      **{f"{k} (row)": v for k, v in mt["rms_error_by_row_mm"].items()},
                      "rms_error_no_damping_mm": m0["rms_error_mm"],
                      "recovery_error_no_damping_mm": m0.get("error_recovery_mm"),
+                     "dent_error_no_damping_mm": m0.get("dent_error_mm"),
                      "max_depth_mm": cd.events.get("max_depth_mm"), "peak_force_model_N": float(np.nanmax(Fz) * E)})
         preds[cd.code] = (U, q, Fz, c, U0)
         np.savez_compressed(mdir / f"pred_{cd.code}.npz", t=cd.t, U=U, q=q, F_N=Fz * E, contact=c, U_no_damping=U0)
