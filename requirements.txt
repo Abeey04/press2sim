@@ -8,5 +8,6 @@ mujoco>=4.0       # only for the MuJoCo baseline (python -m press2sim mujoco) an
 pandas>=2.0       # the notebooks' tables
 notebook>=7.0     # to open the notebooks (VS Code works too)
 pytest>=8.0
-# optional cross-check with CoTracker3: install PyTorch with CUDA from https://pytorch.org first,
-# then run python -m press2sim.cotracker_check (torch.hub downloads the model on first use)
+# optional, for the CoTracker3 cross-check (python -m press2sim.cotracker_check) and notebooks/03_walkthrough:
+# install PyTorch with CUDA from https://pytorch.org first (a PyTorch built for NumPy 1, such as 2.3, also needs
+# numpy<2); torch.hub downloads the model on first use

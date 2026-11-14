@@ -69,6 +69,7 @@ python -m pytest -q tests          # 15 pass, 1 slow test is skipped
 |---|---|---|---|
 | [`02_check_results`](notebooks/02_check_results.ipynb) | Recomputes the held-out errors from the saved arrays, predicts H1 again from its cap depth alone, and shows where the error sits, what damping does, how uncertain E is, the MuJoCo comparison and what the soft top layer does | nothing beyond this repo | about 1 minute |
 | [`01_reproduce`](notebooks/01_reproduce.ipynb) | Runs everything from the raw clips (frame timing, calibration, tracking, model, videos) and compares your numbers with `results/` | the 22 clips, 1.8 GB | about 1 hour on 2 cores |
+| [`03_walkthrough`](notebooks/03_walkthrough.ipynb) | The whole method one step at a time, with a picture after each: reading a clip, calibrating, finding the dots, following them with CoTracker3, building the model piece by piece, fitting it, and predicting a held-out press. Also shows how much the purpose-built tracker matters | the clips, PyTorch with a GPU | about 40 minutes the first time, a minute after |
 
 **Raw clips:** [Google Drive folder](https://drive.google.com/drive/folders/1NeI0AOQUbnOajynEOH5SJd4AMVeiI9OX?usp=sharing)
 (22 clips, 1.8 GB). They are 1080p HEVC at 240 fps nominal, with the audio removed and the video
@@ -93,7 +94,9 @@ run after the model step. The reference run's copy is `results/model/model_check
    same camera view without the card. The board's corners give the pixel-to-millimetre map for the dots.*
 3. **Tracking:** each dot is a contrast-weighted centroid matched to the grid. Two dots on the bottle give
    the cap's depth and tilt. On synthetic clips with known truth, each dot's movement is accurate to
-   0.03 mm and the cap's depth to 0.3 mm.
+   0.03 mm and the cap's depth to 0.3 mm. The pretrained point tracker CoTracker3 was tried as well and is
+   kept as a cross-check: on the same clips its error is 0.24 mm, eight times larger, because a grid of
+   identical dots lets it slip onto a neighbouring dot ([why](docs/pipeline.md#optional-cotracker3-cross-check-gpu)).
 4. **Model:** a hexahedral finite-element grid (a voxel grid) of the whole 234 × 140 × 73 mm block. The
    foam is crushable (linear, a buckling plateau, densification), a thin top layer is much softer, the
    support gives a little, and time enters through Fung's quasi-linear viscoelasticity plus a dashpot.
@@ -157,7 +160,7 @@ Details: [docs/pipeline.md](docs/pipeline.md) (clips to tracked dots), [docs/mod
 
 ```
 press2sim/     the package: video timing, calibration, dots and tracking, the 3D model, fitting, reports, MuJoCo baseline
-notebooks/     01_reproduce (raw clips to every result) and 02_check_results (checks the results in a minute)
+notebooks/     01_reproduce (raw clips to every result), 02_check_results (checks the results in a minute) and 03_walkthrough (the method step by step)
 results/       the reference run behind every number in this README
 media/         the demo GIF and videos
 docs/          details on the pipeline, the model and the MuJoCo comparison, and explore.html (the interactive page)
@@ -179,7 +182,7 @@ Code and tools this project uses:
 - [pandas](https://pandas.pydata.org) and [Jupyter](https://jupyter.org): the notebooks.
 - [pytest](https://pytest.org): the tests.
 - [three.js](https://threejs.org) r128, loaded from cdnjs: the interactive page.
-- Optional: [CoTracker3](https://co-tracker.github.io) (Meta AI, CC-BY-NC) for the tracking cross-check, loaded through PyTorch Hub.
+- [CoTracker3](https://co-tracker.github.io) (Meta AI, CC-BY-NC), through [PyTorch](https://pytorch.org) Hub: optional, for the tracking cross-check and the walkthrough notebook. The README's numbers do not use it.
 
 The physical model follows standard references: the linear, plateau and densification regimes of crushable
 foam (Gibson and Ashby, *Cellular Solids*) and Fung's quasi-linear viscoelasticity (Fung, *Biomechanics*).

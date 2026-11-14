@@ -124,13 +124,15 @@ def _foam_top_under(outline: dict, x_card: float, cfg: Config):
 
 
 def process_clip(path: str | Path, code: str, kind: str, calib: Calibration, cfg: Config, out_dir: Path,
-                 rotation_ccw: int | None = None, make_plots: bool = True, log=print) -> dict:
+                 rotation_ccw: int | None = None, make_plots: bool = True, log=print, tracker=None) -> dict:
+    """tracker: a stand-in for tracker.track, taking the same arguments and returning the same four arrays
+    (cotracker_check.as_tracker makes one that follows the dots with CoTracker). Default: the centroid tracker."""
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)   # all-NaN slices before the rest frame are expected
-        return _process_clip(path, code, kind, calib, cfg, out_dir, rotation_ccw, make_plots, log)
+        return _process_clip(path, code, kind, calib, cfg, out_dir, rotation_ccw, make_plots, log, tracker)
 
 
-def _process_clip(path, code, kind, calib, cfg, out_dir, rotation_ccw, make_plots, log):
+def _process_clip(path, code, kind, calib, cfg, out_dir, rotation_ccw, make_plots, log, tracker=None):
     path = Path(path)
     t_start = time.time()
     out_dir = Path(out_dir)
@@ -168,7 +170,7 @@ def _process_clip(path, code, kind, calib, cfg, out_dir, rotation_ccw, make_plot
     area0, peak0 = _appearance(g0, calib, cfg, pts, roi)
 
     bg = BackgroundCheck(face_box, cfg.tuning.bg_features)
-    t, P, V, A = track(clip, calib, cfg, k0, pts, area0, peak0, grid_shape=(R, C), on_frame=bg)
+    t, P, V, A = (tracker or track)(clip, calib, cfg, k0, pts, area0, peak0, grid_shape=(R, C), on_frame=bg)
 
     mm = calib.px_to_mm(P)
     mm[..., 0] -= x_left                                   # x from the block's left end

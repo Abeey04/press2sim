@@ -113,13 +113,53 @@ Each line from step 4 reports the following. Check them:
 
 ## Optional: CoTracker3 cross-check (GPU)
 
-Install PyTorch with CUDA from pytorch.org, then run:
+Install PyTorch with CUDA from pytorch.org (a PyTorch built for NumPy 1, such as 2.3, also needs
+`numpy<2`), then run:
 
 ```
-python -m press2sim.cotracker_check --code T05
+python -m press2sim.cotracker_check --code H1
 ```
 
 It tracks the same dots with the pretrained CoTracker3 online model and reports how far it disagrees with the centroid tracker, in mm. A large disagreement on a dot points to a tracking problem to look at. CoTracker is licensed CC-BY-NC; credit it if you report its numbers.
+
+On H1 the two agree to 0.24 mm (median over every dot and frame), but one point in twenty is more than
+2.4 mm off, nearly all of them while the cap presses: a few dots in the second row from the bottom and
+beside the cap lose their way. CoTracker's cap dot also slides about 1.5 mm up the cap as the cap sinks
+into the foam, so a cap depth taken from it reads 1.5 mm shallow. `cotracker_check.clean` drops the cap
+dot wherever the bottle's two dots stop being their rest distance apart, and the cap is then placed from
+the tape dot alone.
+
+**Why CoTracker is not the measurement.** On the rendered clips, where the truth is known, it is several
+times less accurate than the centroid tracker. Error in each dot's movement from rest, RMS:
+
+| Rendered clip | Centroid tracker | CoTracker3, every frame | CoTracker3, one frame in four |
+|---|---|---|---|
+| S1, nothing moves | 0.006 mm (worst 0.03 mm) | 0.036 mm (worst 0.19 mm) | 0.037 mm (worst 0.18 mm) |
+| T05, a 29 mm press | 0.031 mm (worst 0.17 mm) | 0.44 mm (worst 5.8 mm) | 0.24 mm (worst 3.2 mm) |
+
+On the real static clip S1 its per-dot spread is 0.022 mm against the centroid tracker's 0.013 mm. Two
+reasons. The dots were painted to be measured: each is a dark disc on plain foam, and averaging the
+contrast over its roughly 180 pixels pins its centre to a few hundredths of a pixel, while CoTracker
+shrinks every frame to 512 × 384 pixels and predicts each point from learned features. And a grid of
+identical dots is the hardest case for a tracker that follows appearance, because every dot looks like
+its neighbours: on H1, about half of CoTracker's errors over 4 mm are a dot's track sitting on another
+dot. Beside the cap, where the top two rows squeeze together, one dot's track settles on the top-row dot
+above it for 2.2 s, most of the hold. The centroid tracker
+looks for each dot only within 45% of the distance to its nearest neighbour, predicts a lost dot from its
+neighbours, and marks a dot invalid rather than guess. CoTracker would be the right tool for an object
+without painted markers.
+
+To rerun the comparison, make the rendered clips and run the pipeline on them (see Validation above),
+then:
+
+```
+python -m press2sim.cotracker_check --synthetic syn
+```
+
+`notebooks/03_walkthrough.ipynb` goes further: it uses CoTracker in place of the centroid tracker for
+every clip, fits the model on those tracks, and scores the result against the centroid tracker's tracks.
+`pipeline.process_clip` takes any tracker through its `tracker` argument, and
+`cotracker_check.as_tracker` makes one from CoTracker.
 
 ## Settings and troubleshooting
 
