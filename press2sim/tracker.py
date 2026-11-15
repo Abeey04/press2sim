@@ -183,7 +183,8 @@ def track(clip: Clip, calib, cfg: Config, start: int, init_px: np.ndarray, rest_
         dt = 0.0 if t_prev is None else t - t_prev
         t_prev = t
         Cimg = dots.contrast_image(g, roi, diam)
-        comp, area, peak = dots.blobs(Cimg, thr, diam, offset=roi[:2], min_area_ratio=0.05, max_area_ratio=6.0)
+        comp, area, peak, lab, comp_lab = dots.blobs(Cimg, thr, diam, offset=roi[:2], min_area_ratio=0.05,
+                                                     max_area_ratio=6.0, labels=True)
         q = p + vel * dt
         if lost[:G].any():
             # a lost grid dot is expected where its neighbours say it is: its rest position moved like them
@@ -279,15 +280,21 @@ def track(clip: Clip, calib, cfg: Config, start: int, init_px: np.ndarray, rest_
                 bright_ok = peak[jj] >= 0.4 * rest_peak[i] if np.isfinite(rest_peak[i]) else True
                 if tun.min_area_ratio <= ratio <= tun.max_area_ratio and bright_ok:
                     newp[i] = comp[jj]; ok[i] = True; ar[i] = area[jj]; claimed.add(jj)
-        # local fallback for grid dots that lost their blob (e.g. merged with a neighbour)
+        # local fallback for grid dots that lost their blob (e.g. blurred or half hidden). As in the claim
+        # above, a blob belongs to one dot only: the part of a blob the local search finds is not taken if
+        # that blob is already held. Otherwise two dots squeezed into one blob both stay valid, and after
+        # the release one of them follows its neighbour, a row off, to the end of the clip.
+        held = {int(comp_lab[jj]) for jj in claimed}
         for i in np.where(~ok[:G] & np.isfinite(q[:G, 0]))[0]:
-            r = dots.refine(Cimg, roi, q[i], np.array([rad[i], rad[i]]), thr)
+            r = dots.refine(Cimg, roi, q[i], np.array([rad[i], rad[i]]), thr, labels=lab)
             if r is not None:
-                pt, a_, pk = r
+                pt, a_, pk, blob = r
                 ratio = a_ / rest_area[i] if rest_area[i] > 0 else 1.0
                 near_bottle = n_extra and any(ok[e] and np.linalg.norm(pt - newp[e]) < 0.75 * diam for e in range(G, N))
-                if tun.min_area_ratio <= ratio <= tun.max_area_ratio and pk >= 0.4 * rest_peak[i] and not near_bottle:
-                    newp[i] = pt; ok[i] = True; ar[i] = a_
+                taken = blob in held
+                if (tun.min_area_ratio <= ratio <= tun.max_area_ratio and pk >= 0.4 * rest_peak[i]
+                        and not near_bottle and not taken):
+                    newp[i] = pt; ok[i] = True; ar[i] = a_; held.add(blob)
         if dt > 0:
             new_vel = np.where(ok[:, None], 0.6 * (newp - p) / dt + 0.4 * vel, 0.0)
             if n_extra:

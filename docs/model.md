@@ -63,10 +63,11 @@ The clips are split: training presses fit the model; H1 (a fresh press), O1 (off
    at 0.1 × E, ε_y = 0.06, h = 0.01, ε_d = 0.64, ν = 0, and the cap's front edge 3 mm in front of the
    face. These values came from earlier exploratory fits. The start has the soft top on because the
    search changes one parameter at a time, and the layer only exists once it has both a thickness
-   and a softness. (Given a start with no layer, the search now tries the two together first.) A
-   fit with no soft top at all stops at a pressing-frame error of 1.92 mm instead of 1.56 mm, and
-   predicts H1 to 1.48 mm and O1 to 1.19 mm instead of 1.17 and 1.01 mm. Every step the search
-   tried, with its score, is in `results/model/params.json` under `shape` → `history`.
+   and a softness. (Given a start with no layer, the search now tries the two together first.) The
+   same search from the same start with the soft top switched off throughout stops at a
+   pressing-frame error of 1.89 mm instead of 1.56 mm, and predicts H1 to 1.48 mm and O1 to 1.22 mm
+   instead of 1.13 and 1.01 mm. Every step the search tried, with its score, is in
+   `results/model/params.json` under `shape` → `history`.
 2. **Damping** (g and τ): the dent the cap leaves behind. While the cap presses, its depth sets the
    dots and damping changes nothing. Once the foam lets go of the cap, how fast the dent closes is
    all damping. So the fit scores the vertical movement of the six top-row dots under the cap, from
@@ -98,7 +99,7 @@ dots.
 | Soft top layer (a stand-in, see Limits) | 3.0 mm at 0.055 × E | presses |
 | Cap's front edge relative to the dotted face | flush (0 mm) | presses |
 | Support under the block | 0.0296 × E per mm | dead weights |
-| Damping: fraction of the stiffness that relaxes, and how fast | 0.16, τ = 0.56 s (viscosity 16.1 kPa·s) | the dent under the cap after release |
+| Damping: fraction of the stiffness that relaxes, and how fast | 0.16, τ = 0.56 s (viscosity 16.0 kPa·s) | the dent under the cap after release |
 | Damping: dashpot in parallel (limits how fast the foam springs back) | τ_v = 1.24 ms, held and not fitted | these clips cannot set it (see below) |
 
 Effective stiffness of the block under the cap (fast = before any relaxation, long-term = after it):
@@ -118,18 +119,18 @@ RMS error of all 105 dots over every frame from just before contact to the end o
 
 | Clip | Set | Deepest | RMS error | RMS movement | Error / movement | At the deepest frame | Top / middle / bottom row | No damping | Dent after release (no damping) |
 |---|---|---|---|---|---|---|---|---|---|
-| T01 | training | 23.9 mm | 0.57 mm | 1.86 mm | 30% | 1.20 mm | 0.73 / 0.62 / 0.30 mm | 0.56 mm | 0.33 mm (0.33 mm) |
+| T01 | training | 23.9 mm | 0.56 mm | 1.86 mm | 30% | 1.20 mm | 0.73 / 0.62 / 0.30 mm | 0.56 mm | 0.33 mm (0.33 mm) |
 | T02 | training | 25.6 mm | 0.82 mm | 2.58 mm | 32% | 1.34 mm | 0.95 / 1.00 / 0.43 mm | 0.81 mm | 0.41 mm (0.30 mm) |
 | T03 | training | 20.4 mm | 0.96 mm | 2.10 mm | 46% | 1.55 mm | 1.06 / 1.10 / 0.55 mm | 0.96 mm | 0.84 mm (0.88 mm) |
 | T04 | training | 32.6 mm | 0.81 mm | 4.09 mm | 20% | 1.29 mm | 1.19 / 0.74 / 0.35 mm | 0.80 mm | 0.38 mm (0.40 mm) |
 | T05 | training | 31.9 mm | 0.88 mm | 4.44 mm | 20% | 1.23 mm | 1.24 / 0.83 / 0.38 mm | 0.88 mm | 0.20 mm (0.61 mm) |
 | T06 | training | 34.0 mm | 0.88 mm | 5.06 mm | 17% | 1.34 mm | 1.32 / 0.74 / 0.33 mm | 0.89 mm | 0.17 mm (0.68 mm) |
-| T07 | training | 45.1 mm | 1.48 mm | 8.34 mm | 18% | 2.31 mm | 2.06 / 1.12 / 0.79 mm | 1.47 mm | 0.19 mm (0.75 mm) |
-| T08 | training | 45.5 mm | 1.62 mm | 9.18 mm | 18% | 2.28 mm | 2.26 / 1.28 / 0.82 mm | 1.62 mm | 0.23 mm (0.90 mm) |
-| T09 | training | 47.6 mm | 1.65 mm | 8.98 mm | 18% | 2.65 mm | 2.27 / 1.33 / 0.81 mm | 1.65 mm | 0.40 mm (0.76 mm) |
-| R1 | training | 35.0 mm | 0.84 mm | 5.41 mm | 16% | 1.22 mm | 1.29 / 0.65 / 0.44 mm | 0.84 mm | 0.42 mm (0.78 mm) |
-| R2 | training | 50.0 mm | 1.97 mm | 10.54 mm | 19% | 2.89 mm | 2.78 / 1.60 / 0.95 mm | 1.97 mm | 0.16 mm (0.93 mm) |
-| H1 | held out | 38.4 mm | 1.17 mm | 6.93 mm | 17% | 1.57 mm | 1.72 / 0.83 / 0.62 mm | 1.17 mm | 0.17 mm (0.77 mm) |
+| T07 | training | 45.1 mm | 1.43 mm | 8.33 mm | 17% | 2.31 mm | 2.06 / 1.12 / 0.79 mm | 1.43 mm | 0.19 mm (0.75 mm) |
+| T08 | training | 45.6 mm | 1.58 mm | 9.17 mm | 17% | 2.28 mm | 2.26 / 1.28 / 0.82 mm | 1.58 mm | 0.24 mm (0.90 mm) |
+| T09 | training | 47.6 mm | 1.59 mm | 8.97 mm | 18% | 2.65 mm | 2.26 / 1.33 / 0.81 mm | 1.60 mm | 0.40 mm (0.75 mm) |
+| R1 | training | 35.0 mm | 0.84 mm | 5.40 mm | 16% | 1.22 mm | 1.29 / 0.65 / 0.44 mm | 0.84 mm | 0.42 mm (0.78 mm) |
+| R2 | training | 50.0 mm | 1.94 mm | 10.54 mm | 18% | 2.89 mm | 2.78 / 1.60 / 0.95 mm | 1.94 mm | 0.16 mm (0.93 mm) |
+| H1 | held out | 38.4 mm | 1.13 mm | 6.92 mm | 16% | 1.57 mm | 1.72 / 0.83 / 0.62 mm | 1.13 mm | 0.17 mm (0.76 mm) |
 | O1 | held out | 32.4 mm | 1.01 mm | 5.21 mm | 19% | 1.56 mm | 1.64 / 0.79 / 0.59 mm | 1.01 mm | 0.22 mm (0.67 mm) |
 | F1 | held out: fingertip, driven by the one dot under it | 28.9 mm (inferred) | 0.31 mm | 0.92 mm | 34% | 0.58 mm | 0.39 / 0.26 / 0.12 mm | 0.31 mm | not scored |
 
@@ -138,7 +139,7 @@ How to read this:
 
 - **The shape carries the prediction.** Deep presses are predicted to within 16–20% of how far the
   dots moved, and the held-out presses no worse than the training ones: H1 (a fresh press, 38 mm)
-  17%, O1 (off-centre, a different FE run with the cap 30 mm to the left) 19%. The shallow presses
+  16%, O1 (off-centre, a different FE run with the cap 30 mm to the left) 19%. The shallow presses
   T01–T03 have larger relative errors because the dots moved less, not because the errors are
   larger. The crushable foam matters: the deformation spreads deep at first, concentrates near the
   cap once the cells start buckling, and spreads deep again as the crushed layer stiffens. A
@@ -157,7 +158,7 @@ How to read this:
     presses improve, T01 and T02 get worse (T02 from 0.30 to 0.41 mm).
   - *Where the dent sits.* The model's leftover dent has the shape of a shallow press, spread
     through the block; the real one stays under the cap. Scored over all 105 dots around the lift,
-    the fitted damping is slightly worse than none (0.796 against 0.790 mm).
+    the fitted damping is barely better than none (0.717 against 0.723 mm).
   - *A slower part.* A second relaxing term lowers the training score by 6%, to 0.43 mm (fractions
     18% and 5%, times 0.28 and 4.5 s), and the held-out score to 0.16 mm. But its time is not set
     by these clips: held at 2, 3, 5 or 10 s it scores within 1%, because 9 of the 11 records end

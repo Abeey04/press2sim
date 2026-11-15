@@ -84,7 +84,7 @@ Each line from step 4 reports the following. Check them:
 - **Face-plane check:** the card is only a proxy for the dotted face, so the face is measured against rulers on the foam itself, in the frames of C1 before the card goes in. In this session the printed board was exactly to scale (260 × 110 mm), but on the face heights read about 5% short: the dot rows, 59 mm apart by ruler, came out 56.5 mm, and the block's 73 mm height came out 69.3 mm. Widths agreed (the 234 mm length read 235.7 mm). So the card was not quite in the face's plane. Heights on the face are rescaled by the average of the two height references (×1.049; they agree within 0.9%), with z = 0 at the foam's base. The measurement and both references are recorded in `out/calib/C1.json` under `face`. Put your own ruler reading in `grid.measured_row_span_mm` in `config.py`.
 - **Rest frame:** the first stretch where all 105 dots are visible and still. This skips the slate and your hand.
 - **Dots:** a morphological closing estimates the local background. Unlike a maximum filter, it doesn't smear the foam's bright sparkles. Each dot's centre is the contrast-weighted centroid of its blob, accurate to a small fraction of a pixel. The blobs are matched to a 15 × 7 lattice that allows for hand-marking errors.
-- **Tracking:** every frame, all dark blobs are found at once, and each dot takes the blob nearest its predicted position. A blob that is the wrong size or too faint is marked invalid instead of guessed; dots that lose their blob get a local second look.
+- **Tracking:** every frame, all dark blobs are found at once, and each dot takes the blob nearest its predicted position. A blob that is the wrong size or too faint is marked invalid instead of guessed; dots that lose their blob get a local second look, which may not take a blob another dot already holds. (Before that rule, a dot squeezed against its neighbour under the cap could be placed on the neighbour's blob and follow it, a row off, after the release; `tests/test_tracker.py` renders the case.)
 - **Bottle:** at rest, the cap dot is the lowest dark mark on the bottle that sits on yellow, with the tape dot about 46.5 mm above it. Each frame, the two are found near their predicted positions, each using its own contrast (the brown-on-yellow cap dot is much fainter than the foam dots). Foam dots and the other bottle dot are masked out of the search, and the two must stay the bottle's length apart. The two dots give the bottle's axis; the cap's flat bottom is 8.5 mm below the cap dot along it. The bottle's front face is not in the face's plane, so the bottle's own scale comes from the dots' separation at rest. If one dot is hidden for a moment, the other one plus the slowly changing offset between them stands in for it.
 - **Depth:** measured from the undisturbed top surface beside the cap. The block's top is not level (it dips about 2 mm in the middle), and the bottle resting on it at rest already presses it down about half a millimetre.
 - **Camera still:** static features on the table in front of the foam and at the far sides of the frame are followed with optical flow.
@@ -122,9 +122,12 @@ python -m press2sim.cotracker_check --code H1
 
 It tracks the same dots with the pretrained CoTracker3 online model and reports how far it disagrees with the centroid tracker, in mm. A large disagreement on a dot points to a tracking problem to look at. CoTracker is licensed CC-BY-NC; credit it if you report its numbers.
 
-On H1 the two agree to 0.24 mm (median over every dot and frame), but one point in twenty is more than
-2.4 mm off, nearly all of them while the cap presses: a few dots in the second row from the bottom and
-beside the cap lose their way. CoTracker's cap dot also slides about 1.5 mm up the cap as the cap sinks
+On H1 the two agree to 0.23 mm (median over every dot and frame), but one point in twenty is more than
+2.3 mm off, nearly all of them while the cap presses: a few dots in the second row from the bottom and
+beside the cap lose their way. The cross-check also caught a fault on our side: before the tracker's
+fallback search was made to respect one blob per dot, the dot it disagreed with most was the one under
+the cap's centre, which the centroid tracker had moved onto its neighbour's blob after the release.
+CoTracker had that dot right. CoTracker's cap dot also slides about 1.5 mm up the cap as the cap sinks
 into the foam, so a cap depth taken from it reads 1.5 mm shallow. `cotracker_check.clean` drops the cap
 dot wherever the bottle's two dots stop being their rest distance apart, and the cap is then placed from
 the tape dot alone.

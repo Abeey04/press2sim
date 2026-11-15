@@ -273,7 +273,7 @@
   "z_base_mm": 0.248634971678257,
   "z_base_spread_mm": 6.033335835817384
  },
- "valid_fraction_after_rest": 0.9959150516421028,
+ "valid_fraction_after_rest": 0.995752582105141,
  "never_valid_dots": 0,
  "camera_still": {
   "features": 40,
@@ -281,11 +281,11 @@
   "median_shift_px": 0.19952982102930186,
   "max_shift_px_last_0.6s": 1.4007176590356811
  },
- "processing_s": 188.9,
+ "processing_s": 292.6,
  "indenter": {
   "rest_x_mm": 116.7657063310113,
-  "rest_height_above_foam_mm": -0.4441609549283356,
-  "foam_under_cap_at_rest_mm": -0.5609151621494135,
+  "rest_height_above_foam_mm": -0.4441609549283072,
+  "foam_under_cap_at_rest_mm": -0.5609151621493851,
   "dot_separation_rest_mm": 47.73816482418778,
   "dot_separation_expected_mm": 46.5,
   "dot_separation_range_mm": [
@@ -300,7 +300,7 @@
   "column_under_cap": 7
  },
  "events": {
-  "max_depth_mm": 38.357129488294326,
+  "max_depth_mm": 38.3571294882943,
   "t_contact": 7.627264301208033,
   "t_max": 11.32,
   "press_speed_mm_s": 39.93612450601595,
@@ -309,7 +309,7 @@
   "release_speed_mm_s": 1218.5399744758834,
   "release_from": "gap to top-row dot",
   "t_release": 11.591666666666667,
-  "foam_top_used_mm": 72.53641516214941,
+  "foam_top_used_mm": 72.53641516214938,
   "foam_top_from": "top edge either side of the cap"
  }
 }

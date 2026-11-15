@@ -31,11 +31,15 @@ def contrast_image(gray: np.ndarray, roi, diam_px: float) -> np.ndarray:
 
 
 def blobs(contrast: np.ndarray, thr: float, diam_px: float, offset=(0, 0), min_area_ratio=0.15,
-          max_area_ratio=4.0):
-    """Connected dark blobs above thr: contrast-weighted centroids (px), areas, peak contrast."""
+          max_area_ratio=4.0, labels=False):
+    """Connected dark blobs above thr: contrast-weighted centroids (px), areas, peak contrast.
+
+    With labels=True, also the label image of contrast > thr (8-connected) and each returned blob's label in it.
+    """
     lab_n, lab, st, _ = cv2.connectedComponentsWithStats((contrast > thr).astype(np.uint8), connectivity=8)
     if lab_n <= 1:
-        return np.zeros((0, 2)), np.zeros(0), np.zeros(0)
+        none = np.zeros((0, 2)), np.zeros(0), np.zeros(0)
+        return none + (lab, np.zeros(0, int)) if labels else none
     w = np.where(lab > 0, contrast - thr, 0).ravel()
     yy, xx = np.indices(contrast.shape)
     L = lab.ravel()
@@ -52,6 +56,8 @@ def blobs(contrast: np.ndarray, thr: float, diam_px: float, offset=(0, 0), min_a
     ok &= area / np.maximum(bw * bh, 1) > 0.3
     ok &= np.maximum(bw, bh) / np.maximum(np.minimum(bw, bh), 1) < 5
     c = np.c_[cx, cy][ok] + np.asarray(offset, float)
+    if labels:
+        return c, area[ok], np.asarray(peak)[ok], lab, np.where(ok)[0]
     return c, area[ok], np.asarray(peak)[ok]
 
 
@@ -151,8 +157,12 @@ def find_grid(gray, calib, cfg: Config, frac=0.4):
     return px, grid_mm, rep
 
 
-def refine(contrast_roi: np.ndarray, roi, p: np.ndarray, half: np.ndarray, thr: float):
-    """Contrast-weighted centroid of the blob nearest p inside a local window. Returns (pt, area, peak) or None."""
+def refine(contrast_roi: np.ndarray, roi, p: np.ndarray, half: np.ndarray, thr: float, labels=None):
+    """Contrast-weighted centroid of the blob nearest p inside a local window. Returns (pt, area, peak) or None.
+
+    With `labels`, the label image of contrast_roi > thr from dots.blobs, also returns which blob of that image
+    the part found here belongs to: (pt, area, peak, label).
+    """
     x0, y0 = roi[0], roi[1]
     cx, cy = p[0] - x0, p[1] - y0
     hx, hy = half
@@ -180,6 +190,8 @@ def refine(contrast_roi: np.ndarray, roi, p: np.ndarray, half: np.ndarray, thr: 
         return None
     yy, xx = np.indices(w.shape)
     q = np.array([(ww * xx).sum() / s + a0 + x0, (ww * yy).sum() / s + b0 + y0])
+    if labels is not None:              # m is connected and above thr, so it lies in exactly one labelled blob
+        return q, float(m.sum()), float(w[m].max()), int(labels[b0:b1, a0:a1][m].max())
     return q, float(m.sum()), float(w[m].max())
 
 

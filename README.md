@@ -23,7 +23,7 @@ its time behaviour live, so there is nothing to install.
 
 | Held-out clip | What it is | Deepest | RMS error | RMS movement | Error / movement |
 |---|---|---|---|---|---|
-| H1 | a fresh press | 38 mm | 1.17 mm | 6.93 mm | 17% |
+| H1 | a fresh press | 38 mm | 1.13 mm | 6.92 mm | 16% |
 | O1 | off-centre, under the 5th dot column | 32 mm | 1.01 mm | 5.21 mm | 19% |
 | F1 | a fingertip instead of the bottle | about 29 mm | 0.31 mm | 0.92 mm | 34% |
 
@@ -42,9 +42,9 @@ it was.*
   101–190 kPa, and it leans on parts of the model the dots cannot pin down (see Limitations).
 - **Damping:** 16% of the stiffness relaxes with a 0.56 s time constant. It is fitted to the one place it
   shows: the dent the cap leaves behind once the foam lets go of it. On the held-out presses that dent is
-  predicted to 0.17 mm (H1) and 0.22 mm (O1), against 0.77 and 0.67 mm with no damping. Over a whole
+  predicted to 0.17 mm (H1) and 0.22 mm (O1), against 0.76 and 0.67 mm with no damping. Over a whole
   press, switching damping off changes the errors by about 0.01 mm.
-- **MuJoCo baseline:** the same block in MuJoCo 4.0, scored the same way, has 1.1–2.2 times our error.
+- **MuJoCo baseline:** the same block in MuJoCo 4.0, scored the same way, has 1.1–2.4 times our error.
   A finer grid, MuJoCo's plasticity and its inversion-proof material do not close the gap
   ([details](docs/mujoco.md)).
 
@@ -62,7 +62,7 @@ cd press2sim
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q tests          # 15 pass, 1 slow test is skipped
+python -m pytest -q tests          # 18 pass, 1 slow test is skipped
 ```
 
 | Notebook | What it does | Needs | Time |
@@ -145,8 +145,8 @@ Details: [docs/pipeline.md](docs/pipeline.md) (clips to tracked dots), [docs/mod
   fit improves the deep presses and makes T01 and T02 worse. A second, slower term helps a little (6% on
   the training presses), but these clips cannot set its time (2 to 10 s fit alike), so it is left out.
   The dashpot is not fitted at all: neither the dent nor the moment of release can tell 0 from 20 ms. And
-  over all 105 dots around the lift, the fitted damping scores slightly worse than none (0.796 against
-  0.790 mm), because the model's leftover dent is spread through the block where the real one stays
+  over all 105 dots around the lift, the fitted damping scores barely better than none (0.717 against
+  0.723 mm), because the model's leftover dent is spread through the block where the real one stays
   under the cap.
 - **Most of the error is at the deepest frames**, in the top row beside the cap and in the bottom row.
   Sideways motion of the top row is underpredicted: 6–7 mm against 9–12 mm measured in H1.

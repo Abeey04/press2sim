@@ -273,7 +273,7 @@
   "z_base_mm": 0.45294132275739685,
   "z_base_spread_mm": 0.8401449044249042
  },
- "valid_fraction_after_rest": 0.9038652341159304,
+ "valid_fraction_after_rest": 0.8896246186496883,
  "never_valid_dots": 0,
  "camera_still": {
   "features": 40,
@@ -281,5 +281,5 @@
   "median_shift_px": 0.18652364720837053,
   "max_shift_px_last_0.6s": 1.7554991461851728
  },
- "processing_s": 123.8
+ "processing_s": 197.3
 }

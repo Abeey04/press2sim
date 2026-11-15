@@ -4,7 +4,9 @@ The run behind every number in the main README, made with `notebooks/01_reproduc
 commands by hand) on the session's 22 clips. `notebooks/02_check_results.ipynb` reads these files, and
 `01_reproduce.ipynb` compares a fresh run against them. A fresh run writes the same files to `out/`.
 The model was fitted from scratch (`python -m press2sim model`, no `--keep-shape`), so `params.json`
-holds the whole shape search.
+holds the whole shape search. Every clip was tracked again for this run after a fix to the tracker's
+fallback search, which could put two dots on one blob (see `docs/pipeline.md`); the run before the fix
+is in the git history.
 
 | Folder | What is in it |
 |---|---|

@@ -281,11 +281,11 @@
   "median_shift_px": 0.10198342854625396,
   "max_shift_px_last_0.6s": 1.1494092527951687
  },
- "processing_s": 231.2,
+ "processing_s": 270.1,
  "indenter": {
   "rest_x_mm": 86.54788716620367,
-  "rest_height_above_foam_mm": 0.04458739423860436,
-  "foam_under_cap_at_rest_mm": 0.23040855645561464,
+  "rest_height_above_foam_mm": 0.04458739423857594,
+  "foam_under_cap_at_rest_mm": 0.23040855645558622,
   "dot_separation_rest_mm": 48.59129546689334,
   "dot_separation_expected_mm": 46.5,
   "dot_separation_range_mm": [
@@ -300,8 +300,8 @@
   "column_under_cap": 4
  },
  "events": {
-  "max_depth_mm": 32.43507284633034,
-  "t_contact": 8.524390037233214,
+  "max_depth_mm": 32.43507284633037,
+  "t_contact": 8.524390037233212,
   "t_max": 12.272083333333335,
   "press_speed_mm_s": 19.655492197534674,
   "hold_s": 0.6225000000000005,
@@ -309,7 +309,7 @@
   "release_speed_mm_s": 1117.9875539795285,
   "release_from": "gap to top-row dot",
   "t_release": 12.577083333333334,
-  "foam_top_used_mm": 72.52359144354439,
+  "foam_top_used_mm": 72.52359144354442,
   "foam_top_from": "top edge either side of the cap"
  }
 }
