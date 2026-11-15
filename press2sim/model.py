@@ -16,9 +16,11 @@ While the cap touches the foam, q is the cap's depth. When the foam would have t
 (F < 0), the two part and q follows F = 0: the foam rises on its own, no faster than the dashpot
 lets it. Under a dead weight (the K clips), F = m g.
 
-Parameters: shape (nu, eps_y, h), the cap's setback y0 from the dotted face, damping
-(g_1, tau_1, g_2, tau_2) and stiffness E. The model is driven only by the cap's measured motion (or a
-weight's mass); the dots are always predicted, never replayed from the clip being predicted.
+Parameters: shape (nu, eps_y, h, eps_d), the soft top layer (skin_t, skin_k), the cap's setback y0
+from the dotted face, the support under the block, damping (g, tau: one relaxing term as fitted,
+though the code accepts several; the dashpot tau_v is held, not fitted) and stiffness E. The model is
+driven only by the cap's measured motion (or a weight's mass); the dots are always predicted, never
+replayed from the clip being predicted.
 """
 from __future__ import annotations
 
