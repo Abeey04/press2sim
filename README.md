@@ -43,7 +43,7 @@ and that dot is left out of the score.
 
 ## Check it yourself
 
-Clone the repository, then (Python 3.10 or newer):
+Clone the repository, then (Python 3.12 or newer; `requirements.txt` pins the versions behind `results/`):
 
 ```bash
 cd press2sim

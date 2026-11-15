@@ -1,13 +1,14 @@
-numpy>=1.26
-scipy>=1.12       # 1.12 introduced the rtol argument of the iterative solvers used in fem.py
-opencv-python>=4.8
-av>=12.0
-matplotlib>=3.8
-pyamg>=5.0        # fast solver for the 3D block model; without it a slower direct solve is used
-mujoco>=4.0       # only for the MuJoCo baseline (python -m press2sim mujoco) and scripts/mujoco_checks.py
-pandas>=2.0       # the notebooks' tables
-notebook>=7.0     # to open the notebooks (VS Code works too)
-pytest>=8.0
+# Exact versions of the run behind results/ (Python 3.12.3). They need Python 3.12 or newer.
+numpy==2.5.4
+scipy==1.18.1       # 1.12 introduced the rtol argument of the iterative solvers used in fem.py
+opencv-python==5.0.0.93
+av==19.0.2
+matplotlib==3.11.2
+pyamg==5.4.1        # fast solver for the 3D block model; without it a slower direct solve is used
+mujoco==4.0.0       # only for the MuJoCo baseline (python -m press2sim mujoco) and scripts/mujoco_checks.py
+pandas==3.1.1       # the notebooks' tables
+notebook==7.6.5     # to open the notebooks (VS Code works too)
+pytest==9.2.0
 # optional, for the CoTracker3 cross-check (python -m press2sim.cotracker_check) and notebooks/03_walkthrough:
 # install PyTorch with CUDA from https://pytorch.org first (a PyTorch built for NumPy 1, such as 2.3, also needs
 # numpy<2); torch.hub downloads the model on first use

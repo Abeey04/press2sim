@@ -24,7 +24,7 @@ The reference run's copies are in `results/model/` and `results/predictions/`; e
 
 A 3D model of the block, driven only by what pushes on it.
 
-- **Space:** a voxel grid of the whole block. The 234 × 139.5 × 73 mm block is cut into
+- **Space:** a finite-element grid of the whole block. The 234 × 139.5 × 73 mm block is cut into
   hexahedral elements (7.5 mm near the dotted face and the top, coarser at the back). Each element
   is a crushable foam: linear up to a strain ε_y, then a soft plateau where the cells buckle (slope
   h·E), then stiffening again once the crushed cells touch (from ε_d). The top 3 mm is a much
@@ -33,7 +33,7 @@ A 3D model of the block, driven only by what pushes on it.
   60 × 60 mm square pushed into the top, its front edge level with the dotted face. The block stands
   on a slightly compliant support. The dead-weight clips showed this clearly: under the 2.4 kg
   weight the bottom row of dots sank about half as far as the top row, where a block on a rigid
-  table would barely move at the bottom. The dots are carried by the grid like particles in a particle-voxel scheme:
+  table would barely move at the bottom. The dots are carried by the grid:
   each one moves with the face nodes around it.
 - **Time:** quasi-linear viscoelasticity (Fung), plus a dashpot. The force on the foam is
   `F(t) = E [g∞ R(q) + h + τ_v dR(q)/dt]`, with `dh/dt = g dR(q)/dt − h/τ` and `g∞ = 1 − g`. R(q)
