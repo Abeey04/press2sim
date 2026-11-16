@@ -1,11 +1,11 @@
 """A 3D finite-element model of the foam block: a hexahedral grid with linear elasticity.
 
 The block (length x along the dotted face, depth y into the block with y = 0 the dotted face,
-height z from the table) is cut into box elements on a tensor-product grid that is finer near the
-dotted face and the top. The grid lines are placed exactly on the edges of whatever presses on the
-top, so a footprint never falls between nodes. Stiffness is computed for E = 1 Pa; displacement
-fields under prescribed displacements do not depend on E (only on Poisson's ratio), forces scale
-with it.
+height z from the table) is cut into box elements on a tensor-product grid: evenly spaced in x and
+z, and in y fine for the first 80 mm behind the dotted face, coarser further back. The grid lines are
+placed exactly on the edges of whatever presses on the top, so a footprint never falls between nodes.
+Stiffness is computed for E = 1 Pa; displacement fields under prescribed displacements do not depend
+on E (only on Poisson's ratio), forces scale with it.
 
 Each tracked dot sits on the y = 0 face and moves with the grid by bilinear interpolation of the
 face nodes.

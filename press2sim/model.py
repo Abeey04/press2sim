@@ -37,7 +37,7 @@ G_ACC = 9.81
 BLOCK = (234.0, 139.5, 73.0)
 CAP = (60.0, 60.0)                              # cap footprint along x and y (mm)
 DEPTHS = np.array([0.0, 1.5, 4.0, 7.0, 11.0, 16.0, 22.0, 29.0, 37.0, 46.0, 56.0])
-FINE = 7.5                                      # FE grid spacing near the face and top (mm)
+FINE = 7.5                                      # FE grid spacing in x and z, and in y near the face (mm)
 PLATE_DEPTHS = np.array([0.0, 0.25, 0.5, 1.0, 1.6, 2.5])
 
 

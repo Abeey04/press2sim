@@ -25,9 +25,10 @@ The reference run's copies are in `results/model/` and `results/predictions/`; e
 A 3D model of the block, driven only by what pushes on it.
 
 - **Space:** a finite-element grid of the whole block. The 234 × 139.5 × 73 mm block is cut into
-  hexahedral elements (7.5 mm near the dotted face and the top, coarser at the back). Each element
-  is a crushable foam: linear up to a strain ε_y, then a soft plateau where the cells buckle (slope
-  h·E), then stiffening again once the crushed cells touch (from ε_d). The top 3 mm is a much
+  hexahedral elements (7.5 mm along the length and height; front to back, 7.5 mm for the first 80 mm
+  behind the dotted face, 12 mm further back). Each element is a crushable foam: linear up to a
+  strain ε_y, then a soft plateau where the cells buckle (slope h·E), then stiffening again once the
+  crushed cells touch (from ε_d). The top 3 mm is a much
   softer layer, a stand-in for whatever keeps the first few millimetres of the cap's travel from
   reaching the dots (see Limits). The cap is a flat rigid
   60 × 60 mm square pushed into the top, its front edge level with the dotted face. The block stands
